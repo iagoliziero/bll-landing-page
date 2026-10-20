@@ -177,6 +177,36 @@
   display: none;
 }
 
+/* Desktop: a seção fica fixa e o efeito horizontalTrack move a faixa */
+[data-pinned] .treatments-stage {
+  height: 100dvh;
+}
+
+[data-pinned] .treatments-viewport {
+  overflow: visible;
+  perspective: 1200px;
+  scroll-snap-type: none;
+}
+
+[data-pinned] .treatments-track {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+[data-pinned] .treatment-card {
+  will-change: transform;
+}
+
+/* Reduced motion: o círculo de entrada vira fade */
+[data-fade] .treatments-stage {
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+
+[data-fade][data-visible] .treatments-stage {
+  opacity: 1;
+}
+
 /* Holofote verde que segue o cursor (--mx/--my vêm do efeito cardSpotlight) */
 .treatment-card::after {
   content: "";

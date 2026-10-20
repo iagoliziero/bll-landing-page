@@ -2,9 +2,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { queries, type Env } from "@/lib/env";
 import { initActions } from "./actions";
+import { initCardSpotlight } from "./cardSpotlight";
 import { initCursor } from "./cursor";
 import { initFab } from "./fab";
 import { initHeroParallax } from "./heroParallax";
+import { initHorizontalTrack } from "./horizontalTrack";
 import { initLiquidPhoto } from "./liquidPhoto";
 import { initMagnetic } from "./magnetic";
 import { initNavTheme } from "./navTheme";
@@ -41,6 +43,8 @@ export function initEffects(): Cleanup {
         initFab(),
         initHeroParallax(env),
         initLiquidPhoto(env),
+        initHorizontalTrack(env),
+        initCardSpotlight(env),
         initCursor(env),
         initMagnetic(env),
       ];
