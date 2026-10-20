@@ -72,6 +72,7 @@ export function PainMap() {
                 <g
                   key={region.id}
                   data-pain-marker={region.id}
+                  data-y={markers[region.id].y}
                   data-on={region.id === selected ? "" : undefined}
                   data-relief={region.id === selected ? "" : undefined}
                   className="pain-marker"
