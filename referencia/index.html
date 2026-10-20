@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BLL Fisioterapia | Fisioterapia em domicílio</title>
+<meta name="description" content="A BLL leva a fisioterapia até a sua casa: dor de cabeça tensional, DTM, dores no pescoço e nas costas e recuperação de quem treina.">
+<meta name="theme-color" content="#0B5D4B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='28 2 30 42'%3E%3Cpath d='M39 18L36 37H52V33' fill='none' stroke='%230B5D4B' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='40.6' cy='9.8' r='4.2' fill='%232FD47F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.pexels.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css">
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#0B5D4B}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.b4{--h:100vh;--px:clamp(20px,4vw,64px);--vd:#0B5D4B;--vd2:#08473A;--ac:#2FD47F;--mn:#DDF3EA;--bg:#F4F8F6;--ink:#10241F;--tx:#4A5D58;--ln:#DCE6E2;--cz:#7D8F8A;position:relative;width:100%;height:100vh;height:100dvh;overflow:hidden;background:var(--vd);font-family:Figtree,system-ui,sans-serif;color:var(--ink);cursor:none;user-select:none;-webkit-user-select:none;isolation:isolate}
+.b4 *{box-sizing:border-box}
+.b4 h2,.b4 h3,.b4 p,.b4 ul{margin:0;padding:0;font-family:inherit}
+.b4 .dsp{font-weight:800;letter-spacing:-.04em;line-height:.95}
+.el{display:inline-block;will-change:transform}
+.sc{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;outline:none}
+.sc::-webkit-scrollbar{display:none}
+.stick{position:sticky;top:0;height:var(--h);overflow:hidden}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph .fb{position:absolute;inset:0;display:none;align-items:center;justify-content:center}
+.ph.nf img{display:none}
+.ph.nf .fb{display:flex}
+.hero{position:relative;height:var(--h);overflow:hidden;background:var(--vd)}
+.hph{position:absolute;inset:0;overflow:hidden;clip-path:circle(0% at 50% 50%);transition:clip-path 1.6s cubic-bezier(.77,0,.18,1)}
+.in .hph{clip-path:circle(75% at 50% 50%)}
+.hpw{position:absolute;left:0;right:0;top:-6%;bottom:-6%;will-change:transform}
+.hpw>img,.hpw>canvas{object-position:60% 40%;transform:scale(1.15);transition:transform 2s cubic-bezier(.16,1,.3,1),opacity .6s}
+.hpw>canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0}
+.gl .hpw>canvas{opacity:1}
+.gl .hpw>img{opacity:0}
+.in .hpw>img,.in .hpw>canvas{transform:scale(1)}
+.hpw .fb{background:var(--vd2);justify-content:flex-end;padding-right:6%}
+.hpw .fb i{font-size:clamp(220px,40vw,520px);color:rgba(255,255,255,.12)}
+.hov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,52,43,.94) 0%,rgba(8,52,43,.82) 40%,rgba(8,52,43,.28) 74%,rgba(8,52,43,.1) 100%);pointer-events:none}
+.hc{position:absolute;left:var(--px);top:clamp(96px,16vh,170px);width:min(660px,68%);z-index:2;color:#fff;will-change:transform}
+.bdg{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);font-size:13px;font-weight:600}
+.bdg i{font-size:16px;color:var(--ac)}
+.b4 .ht{font-size:clamp(44px,8.2vw,130px);color:#fff;margin-top:14px}
+.ln{display:block;overflow:hidden;padding-bottom:.08em}
+.ln>span{display:block;transform:translateY(105%);transition:transform 1s cubic-bezier(.16,1,.3,1) .45s}
+.in .ln>span{transform:none}
+.in .ln:nth-child(2)>span{transition-delay:.55s}
+.dor{position:relative;display:inline-block;transition:opacity .6s 2s}
+.dor i{position:absolute;left:-4%;right:-4%;top:52%;height:.1em;border-radius:6px;background:var(--ac);transform:scaleX(0);transform-origin:0 50%;transition:transform .7s cubic-bezier(.65,0,.35,1) 1.6s}
+.in .dor i{transform:scaleX(1)}
+.in .dor{opacity:.6}
+.fd{opacity:0;transform:translateY(10px);transition:opacity .7s .65s,transform .7s cubic-bezier(.16,1,.3,1) .65s}
+.in .fd{opacity:1;transform:none}
+.in .fd.d1{transition-delay:.7s}.in .fd.d2{transition-delay:.8s}.in .fd.d3{transition-delay:.9s}
+.b4 .hs{font-size:15.5px;line-height:1.55;color:rgba(255,255,255,.9);max-width:470px;margin-top:16px}
+.hb{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.htr{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:20px!important}
+.htr li{display:flex;align-items:center;gap:7px;font-size:13px;color:rgba(255,255,255,.92)}
+.htr i{font-size:16px;color:var(--ac)}
+.odc{position:absolute;right:var(--px);bottom:28px;z-index:2;width:clamp(184px,22vw,260px);background:#fff;border-radius:16px;padding:14px}
+.b4 .odc h3{font-size:17px;font-weight:700;color:var(--ink)}
+.b4 .odc p{font-size:12px;color:var(--tx);margin:3px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.b4 .chip{all:unset;padding:6px 10px;border-radius:999px;background:var(--mn);color:var(--vd);font-size:13px;font-weight:600;cursor:none;transition:background .3s,color .3s}
+.b4 .chip:hover{background:var(--vd);color:#fff}
+.b4 .chip:focus-visible{outline:2px solid var(--vd);outline-offset:2px}
+.nav{position:absolute;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:16px var(--px);color:var(--ink);transition:color .4s}
+.nav[data-t=d]{color:#fff}
+.b4 .brand{all:unset;display:flex;align-items:center;gap:10px;cursor:none;color:var(--vd);transition:color .4s}
+.nav[data-t=d] .brand{color:#fff}
+.brand svg{height:22px;width:auto;display:block}
+.brand span{font-size:13px;font-weight:700;letter-spacing:-.01em}
+.links{display:flex;gap:18px}
+.b4 .links a{font-size:13px;font-weight:500;color:inherit;text-decoration:none;opacity:.8;cursor:none;transition:opacity .3s}
+.b4 .links a:hover{opacity:1}
+.b4 .btn{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:12px;font:700 13px Figtree,sans-serif;background:var(--vd);color:#fff;cursor:none;will-change:transform;transition:background .3s,color .3s,border-color .3s}
+.b4 .btn:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+.b4 .btn.big{padding:15px 22px;font-size:15px}
+.b4 .btn.ac{background:var(--ac);color:var(--ink)}
+.b4 .btn.ac:hover{background:#5BE39B}
+.b4 .btn.gh{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.45)}
+.b4 .btn.gh:hover{border-color:#fff}
+.b4 .btn.sm{padding:9px 14px;font-size:13px}
+.b4 .nav .btn{background:var(--ac);color:var(--ink)}
+.b4 .btn i{font-size:18px}
+.tr{position:relative;background:var(--vd)}
+.trs{background:var(--bg);clip-path:circle(0px at 50% 50%);perspective:1200px}
+.tr-hd{position:absolute;left:var(--px);top:clamp(76px,12vh,116px);z-index:2}
+.b4 .tr-hd h2{font-size:clamp(32px,4.6vw,72px);color:var(--ink)}
+.b4 .tr-hd p{font-size:14px;color:var(--tx);margin-top:8px;max-width:360px}
+.tr-k{position:absolute;right:var(--px);top:clamp(84px,12.6vh,122px);z-index:2;font-size:13px;color:var(--tx);font-variant-numeric:tabular-nums;text-align:right}
+.tr-k b{color:var(--ink);font-weight:700}
+.tr-k i{display:block;width:110px;height:3px;border-radius:2px;background:var(--ln);margin-top:8px;overflow:hidden}
+.tr-k i span{display:block;height:100%;background:var(--vd);transform-origin:0 50%;transform:scaleX(.25)}
+.tr-t{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:flex-end;gap:18px;padding:0 var(--px) 30px;will-change:transform;transform-style:preserve-3d}
+.tc{position:relative;flex:none;width:clamp(262px,32vw,400px);background:#fff;border:1px solid var(--ln);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;will-change:transform;transition:border-color .3s}
+.tc::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),rgba(47,212,127,.2),transparent 65%);opacity:0;transition:opacity .35s}
+.tc:hover{border-color:var(--ac)}
+.tc:hover::after{opacity:1}
+.tc-ph{position:relative;aspect-ratio:16/10;background:var(--mn);overflow:hidden}
+.tc-ph img{transform:scale(1.12) translate3d(var(--ix,0px),var(--iy,0px),0);transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.tc-ph .fb{color:var(--vd);font-size:64px;opacity:.5}
+.tc-b{position:relative;z-index:1;padding:16px 18px 18px;display:flex;flex-direction:column;flex:1}
+.b4 .tc h3{font-size:clamp(20px,2vw,26px);font-weight:800;letter-spacing:-.03em;color:var(--ink);margin-bottom:8px}
+.b4 .tc p{font-size:14px;line-height:1.5;color:var(--tx)}
+.b4 .tc .to{color:var(--ink);margin-top:8px;margin-bottom:14px}
+.b4 .tc .to b{color:var(--vd)}
+.b4 .tc .btn{margin-top:auto;align-self:flex-start}
+.od{position:relative;background:var(--vd);color:#fff;padding:clamp(90px,14vh,140px) var(--px) clamp(70px,10vh,110px)}
+.b4 .od h2{font-size:clamp(32px,4.6vw,72px);color:#fff}
+.b4 .od-hd p{font-size:14px;color:rgba(255,255,255,.8);margin-top:8px}
+.od-g{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:clamp(24px,5vw,80px);align-items:center;margin-top:24px}
+.od-fg{justify-self:center;width:100%;max-width:190px}
+.od-fg svg{display:block;width:100%;height:auto;overflow:visible}
+.od-lg{display:flex;justify-content:center;gap:14px;margin-top:14px;font-size:12px;color:rgba(255,255,255,.75)}
+.od-lg span{display:flex;align-items:center;gap:6px}
+.od-lg i{display:block;width:8px;height:8px;border-radius:50%}
+.fp{fill:none;stroke:rgba(255,255,255,.55);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1}
+.fig-b{animation:br 4.5s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes br{50%{transform:scaleY(1.008) scaleX(1.012)}}
+.scan{stroke:var(--ac);stroke-width:1.4}
+.stg{fill:var(--ac);font-size:12px;font-weight:700}
+.mk{cursor:none}
+.mk .mh{fill:transparent}
+.mk .pr,.mk .pg{opacity:0;transition:opacity 1s}
+.mk.on .pr{opacity:1}
+.mk.on.rl .pr{opacity:0}
+.mk.on.rl .pg{opacity:1}
+.mk .mr2{fill:none;stroke:var(--ac);stroke-width:1.2;opacity:0;transform-box:fill-box;transform-origin:center}
+.mk .md{fill:var(--vd);stroke:#fff;stroke-width:1.5;transition:fill .6s,stroke .6s}
+.mk.on .md{fill:#FF6B5B;stroke:#FF6B5B}
+.mk.on.rl .md{fill:var(--ac);stroke:var(--ac)}
+.mk.on.rl .mr2{animation:pu 1.8s cubic-bezier(.16,1,.3,1) infinite}
+.rm .mk.on .mr2{animation:none;opacity:.5}
+@keyframes pu{0%{opacity:.9;transform:scale(.6)}100%{opacity:0;transform:scale(2.6)}}
+.od-l{display:flex;flex-wrap:wrap;gap:8px}
+.b4 .od-b{all:unset;box-sizing:border-box;padding:8px 14px;border:1px solid rgba(255,255,255,.3);border-radius:999px;font-size:14px;font-weight:600;color:rgba(255,255,255,.85);cursor:none;transition:background .3s,color .3s,border-color .3s}
+.b4 .od-b:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.b4 .od-b.on{background:#fff;color:var(--vd);border-color:#fff}
+.od-p{position:relative;margin-top:22px;min-height:210px}
+.op{position:absolute;left:0;right:0;top:0;opacity:0;transform:translateY(10px);transition:opacity .45s,transform .6s cubic-bezier(.16,1,.3,1);pointer-events:none}
+.op.on{opacity:1;transform:none;pointer-events:auto}
+.b4 .op h3{font-size:clamp(24px,2.6vw,36px);color:#fff;margin-bottom:8px}
+.b4 .op p{font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.88);max-width:440px}
+.op small{display:block;font-size:13px;color:#fff;margin:14px 0}
+.op small b{color:var(--ac)}
+.cf{position:relative;background:#fff;padding:clamp(90px,14vh,140px) var(--px) clamp(70px,10vh,110px)}
+.b4 .cf h2{font-size:clamp(32px,4.6vw,72px);color:var(--ink)}
+.b4 .cf-h p{font-size:14px;color:var(--tx);margin-top:8px}
+.tl{position:relative;height:3px;border-radius:2px;background:var(--ln);margin-top:clamp(36px,7vh,64px)}
+.tl>i{position:absolute;left:0;top:0;height:100%;width:100%;border-radius:2px;background:var(--vd);transform-origin:0 50%;transform:scaleX(0)}
+.tl>b{position:absolute;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#fff;border:2px solid var(--ln);transition:background .3s,border-color .3s,transform .4s cubic-bezier(.34,1.56,.64,1)}
+.tl>b.on{background:var(--vd);border-color:var(--vd);transform:scale(1.25)}
+.tl>em{position:absolute;top:50%;left:0;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:var(--ac);border:4px solid #fff;outline:1px solid var(--ln);will-change:transform}
+.cf-g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:26px}
+.cs{opacity:.28;transform:translateY(10px);transition:opacity .5s,transform .6s cubic-bezier(.16,1,.3,1)}
+.cs.on{opacity:1;transform:none}
+.cs b{display:block;font-size:clamp(34px,4.2vw,58px);font-weight:800;letter-spacing:-.05em;color:var(--vd);line-height:.9}
+.b4 .cs h3{font-size:17px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin:8px 0 6px}
+.b4 .cs p{font-size:13.5px;line-height:1.5;color:var(--tx)}
+.ps{position:relative;background:var(--mn);padding:clamp(90px,14vh,140px) var(--px)}
+.ps-s{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(20px,4vw,70px)}
+.b4 .ps-h h2{font-size:clamp(30px,4.4vw,68px);color:var(--ink)}
+.b4 .ps-h p{font-size:15px;line-height:1.55;color:var(--tx);margin-top:14px;max-width:360px}
+.pvs{display:flex;gap:28px;margin-top:24px}
+.pvs span{display:block;font-size:12px;color:var(--tx)}
+.pvs b{display:block;font-size:clamp(34px,4.2vw,60px);font-weight:800;letter-spacing:-.045em;font-variant-numeric:tabular-nums;line-height:1.05;color:var(--vd)}
+.pvs small{display:block;font-size:11px;color:var(--tx);margin-top:10px}
+.ps-v svg{display:block;width:100%;height:auto;max-height:calc(var(--h) * .78);overflow:visible}
+.pl{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.pa .pl{stroke:rgba(16,36,31,.28)}
+.pm{fill:none;stroke:var(--vd);stroke-width:1.2;stroke-dasharray:3 3}
+.pdv{stroke:var(--vd);stroke-width:1.5}
+.pax{stroke:rgba(16,36,31,.25);stroke-dasharray:3 4;fill:none}
+.ptx{fill:var(--tx);font-size:11px}
+.ctw{position:relative;background:var(--mn)}
+.cta{position:relative;background:var(--vd);color:#fff;padding:clamp(100px,15vh,170px) var(--px) 0;overflow:hidden;clip-path:circle(0px at 50% 100%)}
+.b4 .ct{font-size:clamp(40px,7.4vw,124px);color:#fff}
+.wd{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.ch{display:inline-block;transform:translateY(110%);will-change:transform}
+.b4 .ctp{font-size:16px;line-height:1.6;max-width:460px;color:rgba(255,255,255,.85);margin:24px 0 28px}
+.fm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 24px;max-width:860px}
+.fm label{position:relative;display:block}
+.fm label>span{display:block;font-size:12px;color:rgba(255,255,255,.72);margin-bottom:4px}
+.b4 .fm input,.b4 .fm select{all:unset;box-sizing:border-box;display:block;width:100%;padding:10px 24px 10px 0;border-bottom:1px solid rgba(255,255,255,.35);font:400 16px Figtree,sans-serif;color:#fff;cursor:text;transition:border-color .3s}
+.b4 .fm input::placeholder{color:rgba(255,255,255,.45)}
+.b4 .fm select{cursor:pointer}
+.b4 .fm input:focus,.b4 .fm select:focus{border-color:var(--ac)}
+.b4 .fm option{color:#10241F}
+.fm label>i{position:absolute;right:0;bottom:12px;font-size:16px;color:rgba(255,255,255,.72);pointer-events:none}
+.fa{grid-column:1/-1;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px}
+.fe{font-size:13px;color:#FFD0D0;min-height:18px;margin-top:10px}
+.fmsg{margin-top:10px;max-width:560px;padding:14px 16px;border:1px solid rgba(255,255,255,.25);border-radius:14px;font-size:14px;line-height:1.5;color:rgba(255,255,255,.92)}
+.ft{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:clamp(60px,10vh,120px);padding:22px 0 34px;border-top:1px solid rgba(255,255,255,.2);font-size:13px}
+.ft b{display:block;font-weight:700;margin-bottom:6px}
+.ft span{display:block;color:rgba(255,255,255,.72);line-height:1.6}
+.fab{position:absolute;right:var(--px);bottom:18px;z-index:40;opacity:0;transform:translateY(16px);pointer-events:none;transition:opacity .4s,transform .5s cubic-bezier(.16,1,.3,1)}
+.fab.on{opacity:1;transform:none;pointer-events:auto}
+.it{position:absolute;inset:0;z-index:60;background:var(--vd);color:#fff;display:flex;align-items:center;justify-content:center;transition:opacity .45s}
+.it.out{opacity:0;pointer-events:none}
+.it svg{width:clamp(140px,20vw,230px);height:auto}
+.it path{stroke-dasharray:1;stroke-dashoffset:1}
+.it.go path{stroke-dashoffset:0;transition:stroke-dashoffset .65s cubic-bezier(.65,0,.35,1)}
+.it.go path:nth-child(2){transition-delay:.12s}.it.go path:nth-child(3){transition-delay:.24s}
+.it .hd{transform:scale(0);transform-box:fill-box;transform-origin:center}
+.it.go .hd{transform:scale(1);transition:transform .5s cubic-bezier(.34,1.56,.64,1) .55s}
+.cur,.cdot{position:absolute;left:0;top:0;z-index:70;pointer-events:none;mix-blend-mode:difference;opacity:0;transition:opacity .3s}
+.cur{width:36px;height:36px;margin:-18px 0 0 -18px;border:1px solid #fff;border-radius:50%}
+.cur::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid #fff;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.cur.big::after{transform:scale(1.8)}
+.cdot{width:6px;height:6px;margin:-3px 0 0 -3px;background:#fff;border-radius:50%}
+.hp .cur,.hp .cdot{opacity:1}
+.nc{cursor:auto}
+.nc .btn,.nc a,.nc .brand,.nc .od-b,.nc .chip,.nc .mk{cursor:pointer!important}
+.nc .cur,.nc .cdot{display:none}
+@media (max-width:640px){
+.links,.brand span{display:none}
+.hc{width:auto;right:var(--px)}
+.odc{display:none}
+.hov{background:linear-gradient(180deg,rgba(8,52,43,.9) 0%,rgba(8,52,43,.75) 55%,rgba(8,52,43,.4) 100%)}
+.tc{width:78vw}
+.cf-g{grid-template-columns:1fr 1fr}
+.od-g,.ps-s{grid-template-columns:1fr}
+.od-fg{max-width:140px}
+.fm{grid-template-columns:1fr}
+.ft{grid-template-columns:1fr 1fr}
+.fab{left:var(--px)}
+.fab .btn{width:100%;justify-content:center}
+}
+</style>
+<noscript><style>.it{display:none}.hph{clip-path:none!important}.ln>span,.ch{transform:none!important}.fd{opacity:1!important;transform:none!important}.trs,.cta{clip-path:none!important}</style></noscript>
+</head>
+<body>
+<h1 class="sr-only">BLL Fisioterapia, fisioterapia em domicílio</h1>
+<div class="b4" id="b4">
+<div class="it" id="it"><svg viewBox="0 2 84 42" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" d="M6 9V37M6 9H15a6.5 6.5 0 0 1 0 13H6M6 22H17a7.5 7.5 0 0 1 0 15H6"/><path pathLength="1" d="M39 18L36 37H52V33"/><path pathLength="1" d="M64 9V37H78"/></g><circle class="hd" cx="40.6" cy="9.8" r="4.2" fill="#2FD47F"/></svg></div>
+<nav class="nav" id="nav" data-t="d">
+<button class="brand" id="brand" aria-label="BLL Fisioterapia, voltar ao início"><svg viewBox="0 2 84 42" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V37M6 9H15a6.5 6.5 0 0 1 0 13H6M6 22H17a7.5 7.5 0 0 1 0 15H6"/><path d="M39 18L36 37H52V33"/><path d="M64 9V37H78"/></g><circle cx="40.6" cy="9.8" r="4.2" fill="#2FD47F"/></svg><span>Fisioterapia</span></button>
+<div class="links"><a href="#tr" data-go="tr">Tratamentos</a><a href="#dor" data-go="dor">Onde dói?</a><a href="#cf" data-go="cf">Como funciona</a><a href="#ctw" data-go="cta">Contato</a></div>
+<button class="btn mag" data-wa><i class="ti ti-brand-whatsapp" aria-hidden="true"></i>Agendar</button>
+</nav>
+<main class="sc" id="sc" tabindex="-1">
+<section class="hero" id="hero">
+<div class="hph" id="hph"><div class="hpw ph" id="hpw"><img id="himg" alt="Fisioterapeuta atendendo um paciente" fetchpriority="high"><canvas id="hgl" aria-hidden="true"></canvas><div class="fb"><i class="ti ti-stretching" aria-hidden="true"></i></div></div></div>
+<div class="hov"></div>
+<div class="hc" id="hc">
+<span class="bdg fd"><i class="ti ti-home" aria-hidden="true"></i>Fisioterapia em domicílio</span>
+<h2 class="dsp ht" aria-label="Menos dor. Mais movimento."><span class="ln"><span>Menos <span class="dor">dor<i></i></span>.</span></span><span class="ln"><span>Mais movimento.</span></span></h2>
+<p class="hs fd d1">A BLL leva a fisioterapia até a sua casa para tratar dor de cabeça tensional, DTM, dores no pescoço e nas costas e a recuperação de quem treina.</p>
+<div class="hb fd d2"><button class="btn big ac mag" data-wa><i class="ti ti-brand-whatsapp" aria-hidden="true"></i>Agendar avaliação pelo WhatsApp</button><button class="btn big gh mag" data-go2="tr">Ver tratamentos</button></div>
+<ul class="htr fd d3"><li><i class="ti ti-certificate" aria-hidden="true"></i>Fisioterapeuta com CREFITO [número]</li><li><i class="ti ti-clipboard-check" aria-hidden="true"></i>Avaliação na primeira visita</li><li><i class="ti ti-map-pin" aria-hidden="true"></i>Atende em [cidade e região]</li></ul>
+</div>
+<div class="odc fd d3"><h3>Onde dói?</h3><p>Toque e veja como a BLL pode ajudar.</p><div class="chips"><button class="chip" data-od="1">Pescoço</button><button class="chip" data-od="0">Mandíbula</button><button class="chip" data-od="3">Costas</button><button class="chip" data-od="2">Ombro</button><button class="chip" data-od="4">Joelho</button></div></div>
+</section>
+<section class="tr" id="tr">
+<div class="stick trs" id="trs">
+<div class="tr-hd"><h2 class="dsp"><span class="el">Tratamentos</span></h2><p>A BLL trata a dor e o que está causando ela, com sessões na sua casa.</p></div>
+<div class="tr-k"><b id="trk">1</b> de 4<i><span id="trb"></span></i></div>
+<div class="tr-t" id="trt"></div>
+</div>
+</section>
+<section class="od" id="dor">
+<div class="od-hd"><h2 class="dsp"><span class="el">Onde dói?</span></h2><p>Toque na região e veja o tratamento indicado.</p></div>
+<div class="od-g">
+<div class="od-fg"><svg id="fig" viewBox="0 0 200 430" aria-hidden="true"><defs><radialGradient id="grR"><stop offset="0" stop-color="#FF6B5B" stop-opacity=".85"/><stop offset="1" stop-color="#FF6B5B" stop-opacity="0"/></radialGradient><radialGradient id="grG"><stop offset="0" stop-color="#2FD47F" stop-opacity=".75"/><stop offset="1" stop-color="#2FD47F" stop-opacity="0"/></radialGradient></defs><g class="fig-b"><circle class="fp" pathLength="1" cx="100" cy="44" r="24"/><path class="fp" pathLength="1" d="M100 68V222"/><path class="fp" pathLength="1" d="M60 100H140"/><path class="fp" pathLength="1" d="M80 222H120"/><path class="fp" pathLength="1" d="M60 100L50 170L44 238"/><path class="fp" pathLength="1" d="M140 100L150 170L156 238"/><path class="fp" pathLength="1" d="M88 222L86 316L86 398H74"/><path class="fp" pathLength="1" d="M112 222L114 316L114 398H126"/></g><g id="mks"></g><g id="scg"><line class="scan" x1="-24" y1="0" x2="224" y2="0"/><text id="sct" class="stg" x="228" y="4">Costas</text></g></svg><div class="od-lg" aria-hidden="true"><span><i style="background:#FF6B5B"></i>dor</span><span><i style="background:#2FD47F"></i>alívio</span></div></div>
+<div><div class="od-l" id="odl"></div><div class="od-p" id="odp"></div></div>
+</div>
+</section>
+<section class="cf" id="cf">
+<div class="cf-h"><h2 class="dsp"><span class="el">Como funciona</span></h2><p>Quatro passos, sem você sair de casa.</p></div>
+<div class="tl" id="tl" aria-hidden="true"><i id="tlp"></i><b style="left:12.5%"></b><b style="left:37.5%"></b><b style="left:62.5%"></b><b style="left:87.5%"></b><em id="tlr"></em></div>
+<div class="cf-g" id="cfg"></div>
+</section>
+<section class="ps" id="ps">
+<div class="ps-s">
+<div class="ps-h"><h2 class="dsp"><span class="el">Postura que pesa no pescoço</span></h2><p>Quando a cabeça vai para a frente, o pescoço passa o dia sobrecarregado. Essa postura pode contribuir para a dor de cabeça tensional.</p><div class="pvs"><div><span>Antes</span><b id="pva">42°</b></div><div><span>Depois</span><b id="pvd">56°</b></div></div><div class="pvs"><small>Ângulo da cabeça, valores ilustrativos</small></div></div>
+<div class="ps-v" id="psv"></div>
+</div>
+</section>
+<section class="ctw" id="ctw">
+<div class="cta" id="cta">
+<h2 class="dsp ct" id="ct">Agende sua avaliação e receba a BLL em casa.</h2>
+<p class="ctp">Preencha e a conversa abre no WhatsApp com a mensagem pronta.</p>
+<form class="fm" id="fm" novalidate>
+<label><span>Nome</span><input id="fn" autocomplete="name" placeholder="Maria Souza"></label>
+<label><span>WhatsApp com DDD</span><input id="fw" inputmode="tel" autocomplete="tel" placeholder="(11) 91234-5678"></label>
+<label><span>Tratamento</span><select id="fsel"><option value="">Qual tratamento?</option><option>Cervical e DTM</option><option>Coluna e lombar</option><option>Recuperação muscular</option><option>Mobilidade</option></select><i class="ti ti-chevron-down" aria-hidden="true"></i></label>
+<div class="fa"><button class="btn big ac mag" type="submit"><i class="ti ti-calendar-check" aria-hidden="true"></i>Agendar avaliação</button><button class="btn big gh mag" type="button" data-wa><i class="ti ti-brand-whatsapp" aria-hidden="true"></i>Chamar direto no WhatsApp</button></div>
+</form>
+<p class="fe" id="fe" role="alert"></p>
+<div class="fmsg" id="fmsg" role="status" hidden></div>
+<footer class="ft"><div><b>Atendimento</b><span>Em domicílio</span><span>[Bairros ou cidade]</span></div><div><b>Contato</b><span>[WhatsApp]</span><span>[Instagram]</span></div><div><b>Responsável técnico</b><span>Luis Fernando</span><span>CREFITO [número]</span></div></footer>
+</div>
+</section>
+</main>
+<div class="fab" id="fab"><button class="btn big ac mag" data-wa><i class="ti ti-brand-whatsapp" aria-hidden="true"></i>Agendar pelo WhatsApp</button></div>
+<div class="cur" id="cur"></div><div class="cdot" id="cdot"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(()=>{
+// Coloque aqui o WhatsApp da BLL só com números (55 + DDD + número). Enquanto for o valor de exemplo, os botões mostram um aviso.
+const WA_NUMBER='5500000000000';
+const $=i=>document.getElementById(i);
+const R=$('b4'),sc=$('sc'),nav=$('nav'),it=$('it'),hero=$('hero'),hpw=$('hpw'),himg=$('himg'),hgl=$('hgl'),hc=$('hc'),tr=$('tr'),trs=$('trs'),trt=$('trt'),trk=$('trk'),trb=$('trb'),dor=$('dor'),odl=$('odl'),odp=$('odp'),scg=$('scg'),sct=$('sct'),cf=$('cf'),tlp=$('tlp'),tlr=$('tlr'),cfg=$('cfg'),ps=$('ps'),ctw=$('ctw'),cta=$('cta'),ct=$('ct'),fab=$('fab'),cur=$('cur'),cdot=$('cdot'),fsel=$('fsel'),fmsg=$('fmsg'),fe=$('fe');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,coarse=matchMedia('(pointer: coarse)').matches;
+if(reduce||coarse)R.classList.add('nc');if(reduce)R.classList.add('rm');
+const cl=(v,a=0,b=1)=>v<a?a:v>b?b:v,sm=(a,b,v)=>{const t=cl((v-a)/(b-a));return t*t*(3-2*t)},e3=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,eo=t=>1-Math.pow(1-t,3);
+let W=R.clientWidth,H=R.clientHeight;
+const PX=(id,slug,w)=>`https://images.pexels.com/photos/${id}/pexels-photo-${id}/free-photo-of-${slug}.jpeg?auto=compress&cs=tinysrgb&w=${w}`;
+function chain(img,list){let i=0;const box=img.closest('.ph');const next=()=>{if(i>=list.length){box.classList.add('nf');return}img.src=list[i++]};img.addEventListener('error',next);img.addEventListener('load',()=>{box.classList.add('ok');img.dispatchEvent(new Event('ready'))});next()}
+const TR=[['mood-smile','Cervical e DTM','Para quem tem dor de cabeça tensional, pescoço travado ou dor ao mastigar e abrir a boca.','passar o dia sem dor de cabeça e mastigar sem desconforto.',PX(20860594,'physiotherapist-instructing-patient',900),'Fisioterapeuta orientando um paciente'],['armchair','Coluna e lombar','Para quem sente dor nas costas que piora depois de um dia inteiro sentado.','terminar o dia de trabalho sem as costas pesando.',PX(20860598,'physiotherapist-massaging-patient-back',900),'Fisioterapeuta tratando as costas de um paciente'],['barbell','Recuperação muscular','Para quem treina e está com o músculo dolorido ou sobrecarregado.','treinar de novo sem aquela dor que não passa.',PX(20860607,'physiotherapist-massaging-knee',900),'Fisioterapeuta tratando o joelho de um paciente'],['stretching','Mobilidade','Para quem sente o corpo travado para agachar, correr ou se alongar.','agachar e correr sem sentir o corpo travado.',PX(20860582,'physiotherapist-and-patient-exercising',900),'Fisioterapeuta fazendo exercícios com um paciente']];
+trt.innerHTML=TR.map(t=>`<article class="tc"><div class="tc-ph ph"><img alt="${t[5]}" loading="lazy"><div class="fb"><i class="ti ti-${t[0]}" aria-hidden="true"></i></div></div><div class="tc-b"><h3>${t[1]}</h3><p>${t[2]}</p><p class="to"><b>Objetivo:</b> ${t[3]}</p><button class="btn ac sm mag" data-pick="${t[1]}">Agendar avaliação</button></div></article>`).join('');
+const tcs=[...trt.children];
+tcs.forEach((c,i)=>{chain(c.querySelector('img'),[TR[i][4]]);c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.setProperty('--mx',(x*100).toFixed(1)+'%');c.style.setProperty('--my',(y*100).toFixed(1)+'%');c.style.setProperty('--ix',((x-.5)*-16).toFixed(1)+'px');c.style.setProperty('--iy',((y-.5)*-10).toFixed(1)+'px')});c.addEventListener('pointerleave',()=>{c.style.setProperty('--ix','0px');c.style.setProperty('--iy','0px')})});
+const OD=[['Mandíbula','DTM','Dor ao mastigar ou ao abrir a boca, estalos e tensão no rosto. Tratamos a articulação e orientamos os hábitos que sobrecarregam a mandíbula.','Cervical e DTM'],['Pescoço','Pescoço e dor de cabeça tensional','Pescoço travado e dor de cabeça que começa na nuca. Alívio da tensão e ajustes de postura para o trabalho e o celular.','Cervical e DTM'],['Ombro','Dor no ombro','Dor ou rigidez para levantar o braço. Mobilidade e força para voltar a usar o ombro sem medo.','Mobilidade'],['Costas','Dor lombar','Dor nas costas que piora depois de um dia sentado. Alívio da dor e orientações de postura para o seu dia a dia.','Coluna e lombar'],['Joelho','Dor no joelho','Dor para agachar, subir escada ou correr. Avaliação do movimento e exercícios para voltar a treinar no seu ritmo.','Mobilidade'],['Tornozelo','Tornozelo travado','Tornozelo dolorido ou travado depois de uma torção ou do treino. Mobilidade e estabilidade para apoiar o pé com confiança.','Mobilidade']];
+const RX=[100,100,140,100,114,114],RY=[60,84,100,196,316,394];
+$('mks').innerHTML=RX.map((x,i)=>`<g class="mk" transform="translate(${x} ${RY[i]})"><circle class="pr" r="22" fill="url(#grR)"/><circle class="pg" r="22" fill="url(#grG)"/><circle class="mh" r="14"/><circle class="mr2" r="9"/><circle class="md" r="4.5"/></g>`).join('');
+odl.innerHTML=OD.map(o=>`<button class="od-b" type="button" aria-pressed="false">${o[0]}</button>`).join('');
+odp.innerHTML=OD.map(o=>`<div class="op"><h3 class="dsp">${o[1]}</h3><p>${o[2]}</p><small>Tratamento indicado: <b>${o[3]}</b></small><button class="btn ac mag" data-pick="${o[3]}">Agendar para este caso</button></div>`).join('');
+const odbs=[...odl.children],ops=[...odp.children],mks=[...$('mks').children],fps=[...$('fig').querySelectorAll('.fp')];
+let odSel=3,odTm=0;function selOD(i){odSel=i;odbs.forEach((b,k)=>{b.classList.toggle('on',k===i);b.setAttribute('aria-pressed',k===i?'true':'false')});ops.forEach((p,k)=>p.classList.toggle('on',k===i));mks.forEach((m,k)=>{m.classList.remove('rl');m.classList.toggle('on',k===i)});sct.textContent=OD[i][0];clearTimeout(odTm);odTm=setTimeout(()=>mks[i].classList.add('rl'),reduce?0:1100)}
+odbs.forEach((b,i)=>b.addEventListener('click',()=>selOD(i)));mks.forEach((m,i)=>m.addEventListener('click',()=>selOD(i)));selOD(3);
+const MD=[['Contato pelo WhatsApp','Você conta o que está sentindo e combina o horário com a BLL.'],['Avaliação da queixa','Na primeira visita, o fisioterapeuta entende de onde vem a dor e o quanto ela atrapalha sua rotina.'],['Sessão em casa','O atendimento acontece na sua casa. Você não precisa se deslocar.'],['Orientações e prevenção','Você recebe orientações para o dia a dia e para o treino, para manter o resultado.']];
+cfg.innerHTML=MD.map((m,k)=>`<div class="cs"><b>${k+1}</b><h3>${m[0]}</h3><p>${m[1]}</p></div>`).join('');
+const css=[...cfg.children],tlbs=[...$('tl').querySelectorAll('b')];
+const PA={c7:[146,146],p1:[146,280],p2:[118,214],ear:[192,104],sh:[140,164],el:[146,214],ha:[160,256]},PD={c7:[152,146],p1:[158,282],p2:[140,214],ear:[184,99],sh:[152,164],el:[152,216],ha:[158,258]};
+const f1=v=>v[0].toFixed(1)+' '+v[1].toFixed(1),angOf=k=>Math.atan2(k.c7[1]-k.ear[1],k.ear[0]-k.c7[0]);
+function figP(k,c){const a=angOf(k),cx=k.c7[0],cy=k.c7[1];return `<g class="${c}"><path class="pl" d="M150 330C${f1(k.p1)} ${f1(k.p2)} ${f1(k.c7)}"/><path class="pl" d="M${f1(k.c7)}L${f1([k.ear[0]-10,k.ear[1]+14])}"/><path class="pl" d="M${f1(k.sh)}L${f1(k.el)}L${f1(k.ha)}"/><circle class="pl" cx="${(k.ear[0]-4).toFixed(1)}" cy="${(k.ear[1]-13).toFixed(1)}" r="26"/><path class="pm" d="M${f1(k.c7)}H${(cx+70).toFixed(1)}M${f1(k.c7)}L${f1(k.ear)}"/><path class="pm" d="M${(cx+34).toFixed(1)} ${cy.toFixed(1)}A34 34 0 0 0 ${(cx+34*Math.cos(a)).toFixed(1)} ${(cy-34*Math.sin(a)).toFixed(1)}"/></g>`}
+$('psv').innerHTML=`<svg viewBox="0 0 320 360" role="img" aria-label="Comparação entre a postura com a cabeça projetada e a postura com o eixo alinhado"><defs><clipPath id="pca"><rect id="pra" x="0" y="0" width="312" height="360"/></clipPath><clipPath id="pcd"><rect id="prd" x="312" y="0" width="8" height="360"/></clipPath></defs><path class="pax" d="M150 30V346"/><g clip-path="url(#pca)">${figP(PA,'pa')}</g><g clip-path="url(#pcd)">${figP(PD,'pd')}</g><line id="pdv" class="pdv" x1="312" y1="16" x2="312" y2="350"/><g id="pdh" transform="translate(312 190)"><circle r="12" fill="#0B5D4B"/><path d="M-5 0H5M-5 0l3-3M-5 0l3 3M5 0l-3-3M5 0l-3 3" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"/></g><text class="ptx" x="6" y="22">Antes</text><text class="ptx" x="314" y="22" text-anchor="end">Depois</text></svg>`;
+$('pva').textContent=Math.round(angOf(PA)*180/Math.PI)+'°';$('pvd').textContent=Math.round(angOf(PD)*180/Math.PI)+'°';
+const pra=$('pra'),prd=$('prd'),pdv=$('pdv'),pdh=$('pdh');
+ct.setAttribute('aria-label',ct.textContent.trim());ct.innerHTML=ct.textContent.trim().split(' ').map(w=>`<span class="wd" aria-hidden="true">${[...w].map(c=>`<span class="ch">${c}</span>`).join('')}</span>`).join(' ');const chs=[...ct.querySelectorAll('.ch')];
+const els=[...R.querySelectorAll('.el')];
+let tgt=0,cv=0,RV=H*1.1;const smooth=!reduce;
+const goTo=id=>{let top=$(id==='cta'?'ctw':id).offsetTop;if(id==='tr')top+=RV;if(id==='cta')top+=H*.45;top=cl(top,0,sc.scrollHeight-H);if(smooth)tgt=top;else sc.scrollTop=top};
+const waReady=()=>/^\d{12,13}$/.test(WA_NUMBER)&&WA_NUMBER!=='5500000000000';
+function openWA(msg){if(!waReady())return false;window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg),'_blank','noopener');return true}
+function showMsg(t){fe.textContent='';fmsg.hidden=false;fmsg.textContent=t}
+R.addEventListener('click',e=>{const o=e.target.closest('[data-od]');if(o){selOD(+o.dataset.od);goTo('dor');return}const p=e.target.closest('[data-pick]');if(p){fsel.value=p.dataset.pick;goTo('cta');fe.textContent='';fmsg.hidden=true;setTimeout(()=>$('fn').focus({preventScroll:true}),900);return}const w=e.target.closest('[data-wa]');if(w){if(!openWA('Olá! Quero agendar uma avaliação de fisioterapia em casa com a BLL.')){goTo('cta');showMsg('Configure o número do WhatsApp (WA_NUMBER, no início do script) para este botão abrir a conversa.')}}});
+$('fm').addEventListener('submit',e=>{e.preventDefault();const n=$('fn').value.trim(),w=$('fw').value.replace(/\D/g,''),t=fsel.value;let err='';if(!n)err='Escreva seu nome.';else if(w.length<10)err='Informe o WhatsApp com DDD.';else if(!t)err='Escolha o tratamento.';fe.textContent=err;if(err){fmsg.hidden=true;return}const msg=`Olá! Meu nome é ${n}. Quero agendar uma avaliação em casa (${t}). Meu WhatsApp: ${w}.`;if(openWA(msg))showMsg('Abrimos o WhatsApp com a sua mensagem. Se a conversa não abriu, toque em "Chamar direto no WhatsApp".');else showMsg(`Mensagem pronta: "${msg}" Configure o número do WhatsApp (WA_NUMBER) para enviar.`)});
+['fn','fw','fsel'].forEach(id=>$(id).addEventListener('input',()=>{fe.textContent=''}));
+let wg=null;const trail=document.createElement('canvas'),tctx=trail.getContext('2d');
+function initGL(im){if(wg||!window.THREE)return;let rd;try{rd=new THREE.WebGLRenderer({canvas:hgl,antialias:false,alpha:false})}catch(e){return}
+rd.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+const tex=new THREE.Texture(im);tex.minFilter=THREE.LinearFilter;tex.generateMipmaps=false;tex.needsUpdate=true;
+const ttx=new THREE.CanvasTexture(trail);ttx.minFilter=THREE.LinearFilter;
+const u={uTex:{value:tex},uTr:{value:ttx},uRes:{value:new THREE.Vector2(1,1)},uImg:{value:new THREE.Vector2(im.naturalWidth,im.naturalHeight)},uPos:{value:new THREE.Vector2(.6,.42)},uT:{value:0}};
+const mat=new THREE.ShaderMaterial({uniforms:u,vertexShader:'varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position.xy,0.0,1.0);}',fragmentShader:'uniform sampler2D uTex,uTr;uniform vec2 uRes,uImg,uPos;uniform float uT;varying vec2 vUv;vec2 cov(vec2 p){vec2 s=uRes/uImg;float k0=max(s.x,s.y);vec2 k=uRes/(uImg*k0);return (p-.5)*k+.5+(uPos-.5)*(1.0-k);}void main(){float e=1.0/180.0;float tr=texture2D(uTr,vUv).r;vec2 g=vec2(texture2D(uTr,vUv+vec2(e,0.0)).r-texture2D(uTr,vUv-vec2(e,0.0)).r,texture2D(uTr,vUv+vec2(0.0,e)).r-texture2D(uTr,vUv-vec2(0.0,e)).r);vec2 d=g*.09+vec2(sin(vUv.y*38.0+uT*2.6),cos(vUv.x*38.0+uT*2.6))*tr*.006;float ca=tr*.014;vec3 c;c.r=texture2D(uTex,cov(vUv-d*1.25+vec2(ca,0.0))).r;c.g=texture2D(uTex,cov(vUv-d)).g;c.b=texture2D(uTex,cov(vUv-d*.75-vec2(ca,0.0))).b;c+=vec3(.06,.13,.1)*tr;gl_FragColor=vec4(c,1.0);}'});
+const scene=new THREE.Scene(),cam=new THREE.OrthographicCamera(-1,1,1,-1,0,1);scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),mat));
+wg={rd,scene,cam,u,ttx,resize(){const w=hpw.clientWidth,h=hpw.clientHeight;rd.setSize(w,h,false);u.uRes.value.set(w,h);trail.width=180;trail.height=Math.max(60,Math.round(180*h/w));tctx.fillStyle='#000';tctx.fillRect(0,0,trail.width,trail.height)}};
+wg.resize();rd.render(scene,cam);hero.classList.add('gl')}
+function tryGL(){if(wg||reduce||coarse||!window.THREE)return;const im=new Image();im.crossOrigin='anonymous';im.onload=()=>initGL(im);im.src=himg.currentSrc||himg.src}
+himg.addEventListener('ready',tryGL);
+chain(himg,[PX(20860579,'physiotherapist-working-with-patient',1920)]);
+let ly=0,vel=0,px=W/2,py=H/2,ppx=px,ppy=py,rx=px,ry=py,ox=W/2,oy=H/2,hasP=false,hov=false,skw=0,es=0,ev=0,lastTr=-1,navT='',scy=196,cfOn=[],introOn=true,t0=performance.now(),lastNow=t0,trav=0;
+function layout(){W=R.clientWidth;H=R.clientHeight;RV=H*1.1;R.style.setProperty('--h',H+'px');trav=Math.max(0,trt.scrollWidth-W);tr.style.height=(H+RV+trav*1.2+H*.3)+'px';ctw.style.minHeight=cta.offsetHeight+'px';if(wg)wg.resize()}
+layout();
+function endIntro(){if(!introOn)return;introOn=false;it.classList.add('out');hero.classList.add('in');setTimeout(()=>sc.focus({preventScroll:true}),200)}
+sc.addEventListener('wheel',e=>{endIntro();if(!smooth)return;const mS=sc.scrollHeight-H;let d=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;if(e.deltaMode===1)d*=18;if((tgt<=0&&d<0)||(tgt>=mS-1&&d>0))return;e.preventDefault();tgt=cl(tgt+d,0,mS)},{passive:false});
+sc.addEventListener('scroll',()=>{if(Math.abs(tgt-cv)<.6){cv=tgt=sc.scrollTop}});
+R.addEventListener('pointerdown',endIntro);
+R.addEventListener('keydown',endIntro);
+R.addEventListener('pointermove',e=>{const b=R.getBoundingClientRect();px=e.clientX-b.left;py=e.clientY-b.top;hasP=true;if(e.pointerType==='mouse')R.classList.add('hp')});
+R.addEventListener('pointerleave',()=>{R.classList.remove('hp');hasP=false});
+R.addEventListener('pointerover',e=>{hov=!!e.target.closest('button,a,input,select,.mk');cur.classList.toggle('big',hov)});
+const mags=[...R.querySelectorAll('.mag')].map(el=>({el,x:0,y:0,tx:0,ty:0}));
+mags.forEach(m=>{m.el.addEventListener('pointermove',e=>{if(R.classList.contains('nc'))return;const r=m.el.getBoundingClientRect();m.tx=(e.clientX-r.left-r.width/2)*.22;m.ty=(e.clientY-r.top-r.height/2)*.28});m.el.addEventListener('pointerleave',()=>{m.tx=m.ty=0})});
+R.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();goTo(a.dataset.go)}));
+R.querySelectorAll('[data-go2]').forEach(a=>a.addEventListener('click',()=>goTo(a.dataset.go2)));
+$('brand').addEventListener('click',()=>{if(smooth)tgt=0;else sc.scrollTop=0});
+setTimeout(()=>it.classList.add('go'),60);setTimeout(endIntro,1050);
+function frame(now){requestAnimationFrame(frame);const t=(now-t0)/1000,dt=Math.min((now-lastNow)/1000,.05);lastNow=now;
+if(smooth&&Math.abs(tgt-cv)>.6){cv+=(tgt-cv)*.09;sc.scrollTop=cv}
+const y=sc.scrollTop,dv=y-ly;ly=y;vel+=(dv-vel)*.25;skw+=((reduce?0:cl(vel*.08,-5,5))-skw)*.12;
+const tg=reduce?0:cl(vel*.0035,-.12,.12);ev+=((tg-es)*170-ev*13)*dt;es+=ev*dt;
+const ss=Math.abs(es),etf=`scaleY(${(1+ss).toFixed(4)}) scaleX(${(1-ss*.22).toFixed(4)})`,eoo=es>0?'50% 0':'50% 100%';
+els.forEach(el=>{el.style.transformOrigin=eoo;el.style.transform=ss>.0008?etf:'none'});
+const hE=hero.offsetHeight;
+if(y<hE){const yh=cl(y/hE);hpw.style.transform=`translate3d(0,${(y*.35).toFixed(1)}px,0) scale(${(1+yh*.08).toFixed(3)})`;hc.style.transform=`translate3d(0,${(-y*.18).toFixed(1)}px,0)`;hc.style.opacity=(1-sm(.25,.8,yh)).toFixed(3);
+if(wg){const tw=trail.width,th=trail.height;tctx.fillStyle='rgba(0,0,0,.055)';tctx.fillRect(0,0,tw,th);
+if(hasP){const sp=Math.hypot(px-ppx,py-ppy),hb=hpw.getBoundingClientRect(),fr=R.getBoundingClientRect(),hx=(px-(hb.left-fr.left))/hb.width*tw,hy=(py-(hb.top-fr.top))/hb.height*th,a=Math.min(1,sp/30)*.55+.06,rr=tw*.13,gg=tctx.createRadialGradient(hx,hy,0,hx,hy,rr);gg.addColorStop(0,`rgba(255,255,255,${a.toFixed(3)})`);gg.addColorStop(1,'rgba(255,255,255,0)');tctx.fillStyle=gg;tctx.beginPath();tctx.arc(hx,hy,rr,0,6.2832);tctx.fill()}
+wg.ttx.needsUpdate=true;wg.u.uT.value=t;wg.rd.render(wg.scene,wg.cam)}}
+ppx=px;ppy=py;
+const tT=tr.offsetTop,tE=tT+tr.offsetHeight;let rev=0;
+if(y+H>tT&&y<tE){const d=y-tT;if(d<=0){ox=hasP?px:W/2;oy=hasP?py:H/2}
+rev=sm(0,1,d/RV);const full=Math.hypot(Math.max(ox,W-ox),Math.max(oy,H-oy)),rr=rev*full*1.02;trs.style.clipPath=rev>=1?'none':`circle(${rr.toFixed(1)}px at ${ox.toFixed(0)}px ${oy.toFixed(0)}px)`;
+const q=sm(0,1,(d-RV)/Math.max(1,trav*1.2)),x=-q*trav;trt.style.transform=`translate3d(${x.toFixed(1)}px,0,0) skewX(${(-skw).toFixed(2)}deg)`;
+let bi=0,bd=1e9;tcs.forEach((c,i)=>{const cx=c.offsetLeft+c.offsetWidth/2+x,rel=(cx-W/2)/W,dd=Math.abs(rel);if(dd<bd){bd=dd;bi=i}c.style.transform=`rotateY(${(rel*-16).toFixed(2)}deg) translateZ(${(-dd*50).toFixed(1)}px)`});
+if(bi!==lastTr){trk.textContent=bi+1;lastTr=bi}trb.style.transform=`scaleX(${((bi+1)/TR.length).toFixed(3)})`}
+const oT=dor.offsetTop,oE=oT+dor.offsetHeight;
+if(y+H>oT&&y<oE){scy+=(RY[odSel]-scy)*Math.min(1,dt*6);scg.setAttribute('transform',`translate(0 ${scy.toFixed(1)})`);const q=cl((y+H-oT-80)/(H*.6));fps.forEach((p,i)=>p.style.strokeDashoffset=(1-eo(cl(q*1.6-i*.08))).toFixed(4))}
+const fT=cf.offsetTop,fE=fT+cf.offsetHeight;
+if(y+H>fT&&y<fE){const q=cl((y+H-fT-140)/(H*.7)),tw=$('tl').clientWidth;tlp.style.transform=`scaleX(${q.toFixed(4)})`;tlr.style.transform=`translate3d(${(q*tw).toFixed(1)}px,0,0)`;
+[.125,.375,.625,.875].forEach((f,k)=>{const on=q>=f-.01;if(cfOn[k]!==on){css[k].classList.toggle('on',on);tlbs[k].classList.toggle('on',on);cfOn[k]=on}})}
+const pT=ps.offsetTop,pE=pT+ps.offsetHeight;
+if(y+H>pT&&y<pE){const pp=cl((y+H-pT)/(H+ps.offsetHeight)),X=312-304*e3(sm(.3,.68,pp)),xs=X.toFixed(1);pra.setAttribute('width',xs);prd.setAttribute('x',xs);prd.setAttribute('width',(320-X).toFixed(1));pdv.setAttribute('x1',xs);pdv.setAttribute('x2',xs);pdh.setAttribute('transform',`translate(${xs} 190)`)}
+const cT=ctw.offsetTop;
+if(y+H>cT){const rv=sm(0,1,(y+H-cT)/(H*1.3)),full=Math.hypot(W/2,cta.offsetHeight)*1.02;cta.style.clipPath=rv>=1?'none':`circle(${(rv*full).toFixed(1)}px at 50% ${Math.min(cta.offsetHeight,H+y-cT).toFixed(0)}px)`;
+const r=cl((y+H-cT-H*.55)/(H*.6));chs.forEach((c,k)=>{const q=eo(cl((r-k/chs.length*.5)/.5));c.style.transform=`translate3d(0,${((1-q)*110).toFixed(1)}%,0) rotate(${((1-q)*12).toFixed(2)}deg)`})}
+const ny=y+28;let th;if(ny<hE)th='d';else if(ny<tE)th=rev>.6?'l':'d';else if(ny<oE)th='d';else if(ny<cT+H*.5)th='l';else th='d';
+if(th!==navT){nav.dataset.t=th;navT=th}
+fab.classList.toggle('on',y>hE*.7&&y+H<cT+H*.6);
+rx+=(px-rx)*.16;ry+=(py-ry)*.16;cur.style.transform=`translate3d(${rx.toFixed(1)}px,${ry.toFixed(1)}px,0)`;cdot.style.transform=`translate3d(${px.toFixed(1)}px,${py.toFixed(1)}px,0)`;
+mags.forEach(m=>{m.x+=(m.tx-m.x)*.15;m.y+=(m.ty-m.y)*.15;m.el.style.transform=`translate3d(${m.x.toFixed(2)}px,${m.y.toFixed(2)}px,0)`})}
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);
+new ResizeObserver(layout).observe(R);
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

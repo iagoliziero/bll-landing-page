@@ -1,0 +1,6 @@
+* text=auto
+
+# Script shell da skill impeccable precisa de LF em qualquer sistema
+.claude/skills/impeccable/scripts/impeccable text eol=lf
+*.sh text eol=lf
+*.cmd text eol=crlf
