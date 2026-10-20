@@ -39,7 +39,6 @@ export function Hero() {
             sizes="100vw"
             className="hero-media object-cover object-[60%_40%]"
           />
-          <canvas data-hero-canvas aria-hidden="true" className="hero-media hero-canvas" />
         </div>
       </div>
       <div className="hero-overlay pointer-events-none absolute inset-0" />
@@ -103,7 +102,7 @@ export function Hero() {
               <a
                 href="#onde-doi"
                 data-region-link={id}
-                className="block rounded-full bg-menta px-2.5 py-1.5 text-label font-semibold text-verde transition-colors duration-300 hover:bg-verde hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-verde"
+                className="relative block rounded-full bg-menta px-2.5 py-1.5 text-label font-semibold text-verde transition-colors duration-300 after:absolute after:inset-x-0 after:-inset-y-1.5 hover:bg-verde hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-verde"
               >
                 {painRegions.find((region) => region.id === id)?.label}
               </a>

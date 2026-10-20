@@ -1,4 +1,5 @@
 import type Lenis from "lenis";
+import { easeInOutCubic } from "@/lib/math";
 
 let lenis: Lenis | null = null;
 const targets = new Map<string, () => number>();
@@ -33,7 +34,7 @@ export function scrollToSection(id: string, onArrive?: () => void) {
     const distance = Math.abs(top - window.scrollY);
     lenis.scrollTo(top, {
       duration: Math.min(2, 0.9 + distance / 5000),
-      easing: (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2),
+      easing: easeInOutCubic,
       onComplete: arrive,
     });
   } else {

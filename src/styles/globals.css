@@ -105,8 +105,21 @@
   opacity: 0;
 }
 
+/* A cena WebGL substitui a foto só depois de desenhar o primeiro quadro */
+[data-gl] .hero-canvas {
+  opacity: 1;
+}
+
+[data-gl] img.hero-media {
+  opacity: 0;
+}
+
+/* Overlay verde à esquerda para o contraste AA do texto, e um degradê no topo
+   para os links da navbar sobre a parte clara da foto */
 .hero-overlay {
-  background: linear-gradient(
+  background:
+    linear-gradient(180deg, rgb(8 52 43 / 0.55) 0, rgb(8 52 43 / 0) 140px),
+    linear-gradient(
     90deg,
     rgb(8 52 43 / 0.94) 0%,
     rgb(8 52 43 / 0.82) 40%,

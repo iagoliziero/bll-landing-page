@@ -4,6 +4,8 @@ import { queries, type Env } from "@/lib/env";
 import { initActions } from "./actions";
 import { initCursor } from "./cursor";
 import { initFab } from "./fab";
+import { initHeroParallax } from "./heroParallax";
+import { initLiquidPhoto } from "./liquidPhoto";
 import { initMagnetic } from "./magnetic";
 import { initNavTheme } from "./navTheme";
 import { initSmoothScroll } from "./smoothScroll";
@@ -37,6 +39,8 @@ export function initEffects(): Cleanup {
         initActions(),
         initNavTheme(),
         initFab(),
+        initHeroParallax(env),
+        initLiquidPhoto(env),
         initCursor(env),
         initMagnetic(env),
       ];
