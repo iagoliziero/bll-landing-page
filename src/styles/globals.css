@@ -421,6 +421,15 @@
   background: var(--color-verde-vivo);
 }
 
+/* Com JavaScript, a linha começa vazia e a bolinha no início (efeito timeline) */
+.js .timeline-fill {
+  transform: scaleX(0);
+}
+
+.js .timeline-runner {
+  left: 0;
+}
+
 .timeline-step {
   transition:
     opacity 0.5s,
@@ -430,6 +439,12 @@
 .js .timeline-step:not([data-on]) {
   opacity: 0.28;
   transform: translateY(10px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .timeline-step:not([data-on]) {
+    transform: none;
+  }
 }
 
 /* ---------- Postura ---------- */

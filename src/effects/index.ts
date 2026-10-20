@@ -11,7 +11,9 @@ import { initLiquidPhoto } from "./liquidPhoto";
 import { initMagnetic } from "./magnetic";
 import { initNavTheme } from "./navTheme";
 import { initPainMap } from "./painMap";
+import { initPostureWipe } from "./postureWipe";
 import { initSmoothScroll } from "./smoothScroll";
+import { initTimeline } from "./timeline";
 
 type Cleanup = () => void;
 
@@ -47,6 +49,8 @@ export function initEffects(): Cleanup {
         initHorizontalTrack(env),
         initCardSpotlight(env),
         initPainMap(env),
+        initTimeline(),
+        initPostureWipe(),
         initCursor(env),
         initMagnetic(env),
       ];
