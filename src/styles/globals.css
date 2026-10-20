@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+/* Tokens da identidade visual (referencia/prompt.md, "Identidade visual"). */
+@theme {
+  --color-verde: #0b5d4b;
+  --color-verde-escuro: #08473a;
+  --color-verde-vivo: #2fd47f;
+  --color-verde-vivo-claro: #5be39b;
+  --color-menta: #ddf3ea;
+  --color-fundo: #f4f8f6;
+  --color-tinta: #10241f;
+  --color-secundario: #4a5d58;
+  --color-linha: #dce6e2;
+  --color-dor: #ff6b5b;
+
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+
+  /* Escala de texto corrido */
+  --text-caption: 12px;
+  --text-caption--line-height: 1.5;
+  --text-label: 13px;
+  --text-label--line-height: 1.4;
+  --text-body: 14px;
+  --text-body--line-height: 1.5;
+  --text-lead: 15px;
+  --text-lead--line-height: 1.55;
+  --text-intro: 16px;
+  --text-intro--line-height: 1.6;
+
+  /* Títulos, com tamanhos fluidos */
+  --text-card-title: 17px;
+  --text-card-title--line-height: 1.2;
+  --text-card-heading: clamp(20px, 2vw, 26px);
+  --text-card-heading--line-height: 1.1;
+  --text-panel: clamp(24px, 2.6vw, 36px);
+  --text-number: clamp(34px, 4.2vw, 60px);
+  --text-section: clamp(32px, 4.6vw, 72px);
+  --text-section-long: clamp(30px, 4.4vw, 68px);
+  --text-contact: clamp(40px, 7.4vw, 124px);
+  --text-hero: clamp(44px, 8.2vw, 130px);
+
+  --radius-button: 12px;
+  --radius-panel: 14px;
+  --radius-card-sm: 16px;
+  --radius-card: 18px;
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-reveal: cubic-bezier(0.77, 0, 0.18, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Margem lateral das seções */
+@utility px-page {
+  padding-inline: clamp(20px, 4vw, 64px);
+}
+
+/* Títulos: peso 800, tracking −0,04em, line-height 0,95 */
+@utility headline {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+@layer base {
+  html {
+    background: var(--color-verde);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-tinta);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-verde-vivo);
+    color: var(--color-tinta);
+  }
+}

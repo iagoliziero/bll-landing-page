@@ -2,20 +2,21 @@ Você é um desenvolvedor front-end sênior especializado em landing pages imers
 
 Em /referencia/index.html/ use como base o codigo e melhore usando as skills criadas no projeto.
 
-Faca em Next.js, Typesc
+Faca em Next.js, Typescript, Tailwind, etc.
 
 ## Referências
 - referencia/index.html é o protótipo funcional e aprovado pelo cliente (HTML, CSS e JS em um único arquivo). Ele é a fonte de verdade para layout, logo, cores, tipografia, textos, ritmo de rolagem e efeitos. Abra no navegador e leia o código inteiro antes de começar.
 - Este arquivo (referencia/prompt.md) é a especificação do projeto final. Quando o protótipo e este documento divergirem, este documento vence.
 
 ## Skills do projeto
-O projeto tem três skills baixadas em .claude/skills/: frontend-design, impeccable e copywriting. Se não estiverem lá, procure em .agents/skills/.
+O projeto tem quatro skills baixadas em .claude/skills/: frontend-design, impeccable, copywriting e next-best-practices. Se não estiverem lá, procure em .agents/skills/.
 1. Antes de planejar, leia o SKILL.md de cada uma e os arquivos que ele referencia.
 2. frontend-design: use em todas as decisões visuais e de implementação da interface (tipografia, espaçamento, hierarquia, estados, responsividade).
 3. impeccable: use para revisar e polir cada seção assim que ela ficar pronta. No final, faça uma passada completa no site inteiro: detalhes visuais, acessibilidade, estados de hover e foco, consistência e desempenho.
 4. copywriting: use para revisar todos os textos, incluindo botões, mensagens de erro e a mensagem pronta do WhatsApp, respeitando as regras de "Posicionamento e voz" abaixo.
-5. O protótipo já foi aprovado. Use as skills para refinar e elevar a qualidade, não para trocar a direção. Se uma skill sugerir mudança grande (layout, paleta, conceito ou ordem das seções), coloque como sugestão no plano e espere minha aprovação.
-6. No resumo final, liste o que cada skill mudou ou melhorou.
+5. next-best-practices: use em todas as decisões de Next.js: organização de pastas e arquivos do App Router, limites entre Server e Client Components, metadata e Open Graph, next/image e next/font. A estrutura da seção "Arquitetura" continua valendo. Se a skill indicar um ajuste nela, proponha no plano.
+6. O protótipo já foi aprovado. Use as skills para refinar e elevar a qualidade, não para trocar a direção. Se uma skill sugerir mudança grande (layout, paleta, conceito ou ordem das seções), coloque como sugestão no plano e espere minha aprovação.
+7. No resumo final, liste o que cada skill mudou ou melhorou.
 
 ## Forma de trabalhar
 1. Antes de escrever código, apresente um plano curto: estrutura de pastas, como cada efeito do protótipo será portado, dependências, como as skills serão aplicadas e a ordem das etapas. Espere minha aprovação.
@@ -37,7 +38,7 @@ O projeto tem três skills baixadas em .claude/skills/: frontend-design, impecca
 - GSAP + ScrollTrigger para os efeitos ligados à rolagem.
 - Lenis para o scroll suave, dirigido pelo gsap.ticker e sincronizado com o ScrollTrigger.
 - Cena WebGL do hero em WebGL puro ou Three.js, carregada sob demanda só no cliente, com o mesmo shader do protótipo.
-- CSS puro em styles/tokens.css, base.css, effects.css e sections.css. Sem Tailwind.
+- Tailwind CSS v4, com as cores, a fonte e os raios da "Identidade visual" definidos como tokens no @theme de styles/globals.css.
 - Fonte Figtree via next/font/google, auto-hospedada, pesos 400 a 800.
 - Ícones: @tabler/icons-react.
 
@@ -51,7 +52,7 @@ src/
   scenes/          heroLiquid.ts (WebGL do hero)
   effects/         smoothScroll, circleReveal, horizontalTrack, cardSpotlight, elasticHeadings, painMap, timeline, postureWipe, splitChars, magnetic, cursor
   lib/             loop.ts (assinaturas no gsap.ticker, nenhum outro requestAnimationFrame), env.ts (reduced motion, ponteiro, mobile, nível da GPU), whatsapp.ts (monta o link wa.me)
-  styles/
+  styles/          globals.css (Tailwind e tokens do tema)
 public/images/     fotos otimizadas em WebP
 
 Regras:
