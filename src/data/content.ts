@@ -6,7 +6,7 @@ import { site } from "@/config/site";
 
 export type TreatmentId = "cervical-dtm" | "coluna-lombar" | "recuperacao-muscular" | "mobilidade";
 export type RegionId = "mandibula" | "pescoco" | "ombro" | "costas" | "joelho" | "tornozelo";
-export type TreatmentIcon = "mood-smile" | "armchair" | "barbell" | "stretching";
+export type TrustIcon = "certificate" | "clipboard-check" | "map-pin";
 
 type Photo = { src: string; alt: string };
 
@@ -40,7 +40,7 @@ export const hero = {
     { icon: "certificate", text: `Fisioterapeuta com CREFITO ${site.responsible.crefito}` },
     { icon: "clipboard-check", text: "Avaliação na primeira visita" },
     { icon: "map-pin", text: `Atende em ${site.city} e região` },
-  ],
+  ] satisfies { icon: TrustIcon; text: string }[],
   // Para trocar pela foto do Luis atendendo, mude só esta linha (veja o README).
   image: {
     src: "/images/hero",
@@ -64,7 +64,6 @@ export const treatmentsSection = {
 
 export const treatments: {
   id: TreatmentId;
-  icon: TreatmentIcon;
   name: string;
   description: string;
   goal: string;
@@ -72,7 +71,6 @@ export const treatments: {
 }[] = [
   {
     id: "cervical-dtm",
-    icon: "mood-smile",
     name: "Cervical e DTM",
     description:
       "Para quem tem dor de cabeça tensional, pescoço travado ou dor ao mastigar e abrir a boca.",
@@ -84,7 +82,6 @@ export const treatments: {
   },
   {
     id: "coluna-lombar",
-    icon: "armchair",
     name: "Coluna e lombar",
     description: "Para quem sente dor nas costas que piora depois de um dia inteiro sentado.",
     goal: "terminar o dia de trabalho sem as costas pesando.",
@@ -95,7 +92,6 @@ export const treatments: {
   },
   {
     id: "recuperacao-muscular",
-    icon: "barbell",
     name: "Recuperação muscular",
     description: "Para quem treina e está com o músculo dolorido ou sobrecarregado.",
     goal: "treinar de novo sem aquela dor que não passa.",
@@ -106,7 +102,6 @@ export const treatments: {
   },
   {
     id: "mobilidade",
-    icon: "stretching",
     name: "Mobilidade",
     description: "Para quem sente o corpo travado para agachar, correr ou se alongar.",
     goal: "agachar e correr sem sentir o corpo travado.",

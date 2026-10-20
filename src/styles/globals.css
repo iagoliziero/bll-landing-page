@@ -12,6 +12,7 @@
   --color-secundario: #4a5d58;
   --color-linha: #dce6e2;
   --color-dor: #ff6b5b;
+  --color-erro: #ffd0d0;
 
   --font-sans: var(--font-figtree), system-ui, sans-serif;
 
@@ -42,13 +43,17 @@
   --radius-button: 12px;
   --radius-panel: 14px;
   --radius-card-sm: 16px;
-  --radius-card: 18px;
+  --radius-card: 16px;
 
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-reveal: cubic-bezier(0.77, 0, 0.18, 1);
   --ease-draw: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
+/* js: estilos que só valem com JavaScript (a classe .js entra no <html> antes da
+   primeira pintura). Sem ela, a página mostra o estado final de tudo. */
+@custom-variant js (&:where(.js *));
 
 /* Margem lateral das seções */
 @utility px-page {
@@ -77,4 +82,317 @@
     background: var(--color-verde-vivo);
     color: var(--color-tinta);
   }
+}
+
+/* ---------- Hero ---------- */
+
+.hero-media {
+  transform: scale(1);
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.hero-overlay {
+  background: linear-gradient(
+    90deg,
+    rgb(8 52 43 / 0.94) 0%,
+    rgb(8 52 43 / 0.82) 40%,
+    rgb(8 52 43 / 0.28) 74%,
+    rgb(8 52 43 / 0.1) 100%
+  );
+}
+
+@media (width < 40rem) {
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgb(8 52 43 / 0.9) 0%,
+      rgb(8 52 43 / 0.75) 55%,
+      rgb(8 52 43 / 0.4) 100%
+    );
+  }
+}
+
+/* Cada linha do título sobe de trás de uma máscara */
+.hero-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.hero-line > span {
+  display: block;
+}
+
+/* Traço verde vivo que risca "dor" */
+.hero-struck {
+  position: relative;
+  display: inline-block;
+  opacity: 0.6;
+}
+
+.hero-struck i {
+  position: absolute;
+  top: 52%;
+  right: -4%;
+  left: -4%;
+  height: 0.1em;
+  border-radius: 6px;
+  background: var(--color-verde-vivo);
+}
+
+/* ---------- Tratamentos ---------- */
+
+.treatments-viewport {
+  scrollbar-width: none;
+}
+
+.treatments-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+/* Holofote verde que segue o cursor (--mx/--my vêm do efeito cardSpotlight) */
+.treatment-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 50%),
+    rgb(47 212 127 / 0.2),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.treatment-card:hover::after {
+  opacity: 1;
+}
+
+/* A foto se move por dentro do card (--ix/--iy vêm do efeito cardSpotlight) */
+.treatment-photo img {
+  transform: scale(1.12) translate3d(var(--ix, 0px), var(--iy, 0px), 0);
+  transition: transform 0.5s var(--ease-out-soft);
+}
+
+/* ---------- Onde dói? ---------- */
+
+.pain-body-path {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.55);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.pain-scan-line {
+  stroke: var(--color-verde-vivo);
+  stroke-width: 1.4;
+}
+
+.pain-scan-label {
+  fill: var(--color-verde-vivo);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pain-marker .pain-hit {
+  fill: transparent;
+}
+
+.pain-marker .pain-halo-red,
+.pain-marker .pain-halo-green {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.pain-marker[data-on] .pain-halo-red {
+  opacity: 1;
+}
+
+.pain-marker[data-on][data-relief] .pain-halo-red {
+  opacity: 0;
+}
+
+.pain-marker[data-on][data-relief] .pain-halo-green {
+  opacity: 1;
+}
+
+.pain-marker .pain-ring {
+  fill: none;
+  stroke: var(--color-verde-vivo);
+  stroke-width: 1.2;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.pain-marker[data-on][data-relief] .pain-ring {
+  opacity: 0.5;
+}
+
+.pain-marker .pain-dot {
+  fill: var(--color-verde);
+  stroke: #fff;
+  stroke-width: 1.5;
+  transition:
+    fill 0.6s,
+    stroke 0.6s;
+}
+
+.pain-marker[data-on] .pain-dot {
+  fill: var(--color-dor);
+  stroke: var(--color-dor);
+}
+
+.pain-marker[data-on][data-relief] .pain-dot {
+  fill: var(--color-verde-vivo);
+  stroke: var(--color-verde-vivo);
+}
+
+/* Com JavaScript, um painel por vez, empilhados no mesmo lugar */
+.js .pain-panels {
+  display: grid;
+  min-height: 210px;
+}
+
+.js .pain-panel {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition:
+    opacity 0.45s,
+    transform 0.6s var(--ease-out-soft),
+    visibility 0s 0.45s;
+}
+
+.js .pain-panel[data-on] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.45s,
+    transform 0.6s var(--ease-out-soft),
+    visibility 0s;
+}
+
+/* ---------- Como funciona ---------- */
+
+.timeline-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  background: var(--color-verde);
+  transform-origin: 0 50%;
+}
+
+.timeline-stop {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  margin: -8px 0 0 -8px;
+  border: 2px solid var(--color-linha);
+  border-radius: 50%;
+  background: #fff;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s,
+    transform 0.4s var(--ease-spring);
+}
+
+.timeline-stop[data-on] {
+  border-color: var(--color-verde);
+  background: var(--color-verde);
+  transform: scale(1.25);
+}
+
+.timeline-runner {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  outline: 1px solid var(--color-linha);
+  background: var(--color-verde-vivo);
+}
+
+.timeline-step {
+  transition:
+    opacity 0.5s,
+    transform 0.6s var(--ease-out-soft);
+}
+
+.js .timeline-step:not([data-on]) {
+  opacity: 0.28;
+  transform: translateY(10px);
+}
+
+/* ---------- Postura ---------- */
+
+.posture-figure {
+  max-height: 78dvh;
+}
+
+.posture-line {
+  fill: none;
+  stroke: var(--color-tinta);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.posture-before .posture-line {
+  stroke: rgb(16 36 31 / 0.28);
+}
+
+.posture-measure {
+  fill: none;
+  stroke: var(--color-verde);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 3;
+}
+
+.posture-axis {
+  fill: none;
+  stroke: rgb(16 36 31 / 0.25);
+  stroke-dasharray: 3 4;
+}
+
+.posture-divider {
+  stroke: var(--color-verde);
+  stroke-width: 1.5;
+}
+
+.posture-label {
+  fill: var(--color-secundario);
+  font-size: 12px;
+}
+
+/* ---------- Contato ---------- */
+
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  vertical-align: top;
+}
+
+.split-char {
+  display: inline-block;
 }

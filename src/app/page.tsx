@@ -1,9 +1,28 @@
-import { hero } from "@/data/content";
+import { Fab } from "@/components/Fab";
+import { JsonLd } from "@/components/JsonLd";
+import { Navbar } from "@/components/Navbar";
+import { Contact, Footer } from "@/components/sections/Contact";
+import { Hero } from "@/components/sections/Hero";
+import { HowItWorks } from "@/components/sections/HowItWorks";
+import { PainMap } from "@/components/sections/PainMap";
+import { Posture } from "@/components/sections/Posture";
+import { Treatments } from "@/components/sections/Treatments";
 
 export default function Home() {
   return (
-    <main className="grid min-h-dvh place-items-center bg-verde px-page text-white">
-      <h1 className="headline text-hero">{hero.title.lines.join(" ")}</h1>
-    </main>
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <Treatments />
+        <PainMap />
+        <HowItWorks />
+        <Posture />
+        <Contact />
+      </main>
+      <Footer />
+      <Fab />
+      <JsonLd />
+    </>
   );
 }
