@@ -33,6 +33,7 @@ export function PainMap() {
   return (
     <section
       id="onde-doi"
+      tabIndex={-1}
       data-pain-map
       data-nav-theme="dark"
       aria-labelledby="onde-doi-titulo"

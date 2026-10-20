@@ -32,6 +32,7 @@ export function Contact() {
   return (
     <section
       id="contato"
+      tabIndex={-1}
       data-contact
       data-nav-theme="dark"
       aria-labelledby="contato-titulo"
@@ -59,7 +60,7 @@ export function Footer() {
     "underline decoration-white/30 underline-offset-3 transition-colors hover:text-white hover:decoration-verde-vivo";
 
   return (
-    <footer className="bg-verde px-page text-white">
+    <footer data-nav-theme="dark" className="bg-verde px-page text-white">
       <div className="grid grid-cols-2 gap-[18px] border-t border-white/20 pt-[22px] pb-[34px] text-label sm:grid-cols-3">
         <div>
           <b className="mb-1.5 block font-bold">{footer.service.title}</b>

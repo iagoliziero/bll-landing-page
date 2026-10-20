@@ -60,6 +60,7 @@ export function Posture() {
   return (
     <section
       id="postura"
+      tabIndex={-1}
       data-posture
       data-nav-theme="light"
       aria-labelledby="postura-titulo"

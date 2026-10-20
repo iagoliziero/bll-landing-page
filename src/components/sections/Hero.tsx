@@ -23,6 +23,7 @@ export function Hero() {
   return (
     <section
       id="inicio"
+      tabIndex={-1}
       data-hero
       data-nav-theme="dark"
       className="hero relative flex min-h-dvh flex-col overflow-hidden bg-verde"

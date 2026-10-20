@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 /* Tokens da identidade visual (referencia/prompt.md, "Identidade visual"). */
 @theme {
@@ -76,6 +77,11 @@
     font-family: var(--font-sans);
     color: var(--color-tinta);
     -webkit-font-smoothing: antialiased;
+  }
+
+  /* Seções recebem o foco ao chegar pela navegação, sem anel visível */
+  section[tabindex="-1"]:focus {
+    outline: none;
   }
 
   ::selection {
@@ -395,4 +401,266 @@
 
 .split-char {
   display: inline-block;
+}
+
+/* ---------- Abertura ---------- */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-verde);
+  color: #fff;
+  transition:
+    opacity 0.35s,
+    visibility 0s 0.35s;
+}
+
+.js .intro {
+  display: flex;
+}
+
+.intro-done .intro {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro svg {
+  width: clamp(140px, 20vw, 230px);
+  height: auto;
+}
+
+/* A logo se desenha em cerca de 0,7s e a cabeça entra com overshoot */
+.intro path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: intro-draw 0.5s var(--ease-draw) forwards;
+}
+
+.intro path:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.intro path:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.intro .logo-head {
+  transform: scale(0);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: intro-head 0.45s var(--ease-spring) 0.35s forwards;
+}
+
+@keyframes intro-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes intro-head {
+  to {
+    transform: scale(1);
+  }
+}
+
+/* ---------- Entrada do hero (começa com .intro-done) ---------- */
+
+/* A foto aparece por um círculo que se abre do centro, com zoom de 1,15 para 1 */
+.js .hero-photo {
+  clip-path: circle(0% at 50% 50%);
+}
+
+.intro-done .hero-photo {
+  clip-path: circle(75% at 50% 50%);
+  transition: clip-path 1.6s var(--ease-reveal);
+}
+
+.js .hero-media {
+  transform: scale(1.15);
+}
+
+.intro-done .hero-media {
+  transform: scale(1);
+  transition:
+    transform 2s var(--ease-out-soft),
+    opacity 0.6s;
+}
+
+.js .hero-line > span {
+  transform: translateY(105%);
+}
+
+.intro-done .hero-line > span {
+  transform: none;
+  transition: transform 1s var(--ease-out-soft) 0.05s;
+}
+
+.intro-done .hero-line:nth-child(2) > span {
+  transition-delay: 0.15s;
+}
+
+/* O traço risca "dor" cerca de 1,5s depois da entrada */
+.js .hero-struck {
+  opacity: 1;
+}
+
+.js .hero-struck i {
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+.intro-done .hero-struck {
+  opacity: 0.6;
+  transition: opacity 0.6s 2s;
+}
+
+.intro-done .hero-struck i {
+  transform: scaleX(1);
+  transition: transform 0.7s var(--ease-draw) 1.6s;
+}
+
+.js .hero-fade {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.intro-done .hero-fade {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.7s 0.2s,
+    transform 0.7s var(--ease-out-soft) 0.2s;
+}
+
+.intro-done .hero-fade-1 {
+  transition-delay: 0.3s;
+}
+
+.intro-done .hero-fade-2 {
+  transition-delay: 0.4s;
+}
+
+.intro-done .hero-fade-3 {
+  transition-delay: 0.5s;
+}
+
+/* Com reduced motion, o círculo vira fade e nada se desloca */
+@media (prefers-reduced-motion: reduce) {
+  .js .hero-photo {
+    clip-path: none;
+    opacity: 0;
+  }
+
+  .intro-done .hero-photo {
+    opacity: 1;
+    transition: opacity 0.8s;
+  }
+
+  .js .hero-media,
+  .intro-done .hero-media,
+  .js .hero-line > span,
+  .js .hero-fade {
+    transform: none;
+  }
+
+  .js .hero-line > span {
+    opacity: 0;
+  }
+
+  .intro-done .hero-line > span {
+    opacity: 1;
+    transition: opacity 0.6s;
+  }
+}
+
+/* ---------- Botão fixo do WhatsApp ---------- */
+
+.fab {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition:
+    opacity 0.4s,
+    transform 0.5s var(--ease-out-soft),
+    visibility 0s 0.5s;
+}
+
+.fab[data-on] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  transition:
+    opacity 0.4s,
+    transform 0.5s var(--ease-out-soft),
+    visibility 0s;
+}
+
+/* ---------- Cursor ---------- */
+
+.cursor-ring,
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 70;
+  display: none;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.has-cursor .cursor-ring,
+.has-cursor .cursor-dot {
+  display: block;
+}
+
+.cursor-visible .cursor-ring,
+.cursor-visible .cursor-dot {
+  opacity: 1;
+}
+
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+}
+
+.cursor-ring::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  transition: transform 0.35s var(--ease-spring);
+}
+
+.cursor-ring[data-big]::after {
+  transform: scale(1.8);
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.has-cursor,
+.has-cursor * {
+  cursor: none;
+}
+
+.has-cursor input {
+  cursor: text;
 }

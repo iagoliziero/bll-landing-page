@@ -9,6 +9,7 @@ export function Treatments() {
   return (
     <section
       id="tratamentos"
+      tabIndex={-1}
       data-treatments
       data-nav-theme="light"
       aria-labelledby="tratamentos-titulo"

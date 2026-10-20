@@ -9,6 +9,7 @@ export function HowItWorks() {
   return (
     <section
       id="como-funciona"
+      tabIndex={-1}
       data-how-it-works
       data-nav-theme="light"
       aria-labelledby="como-funciona-titulo"

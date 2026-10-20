@@ -1,4 +1,7 @@
+import { Cursor } from "@/components/Cursor";
 import { Fab } from "@/components/Fab";
+import { GlobalEffects } from "@/components/GlobalEffects";
+import { Intro } from "@/components/Intro";
 import { JsonLd } from "@/components/JsonLd";
 import { Navbar } from "@/components/Navbar";
 import { Contact, Footer } from "@/components/sections/Contact";
@@ -11,6 +14,7 @@ import { Treatments } from "@/components/sections/Treatments";
 export default function Home() {
   return (
     <>
+      <Intro />
       <Navbar />
       <main>
         <Hero />
@@ -22,6 +26,8 @@ export default function Home() {
       </main>
       <Footer />
       <Fab />
+      <Cursor />
+      <GlobalEffects />
       <JsonLd />
     </>
   );
