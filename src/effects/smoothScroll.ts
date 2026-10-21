@@ -10,7 +10,7 @@ import { setSmoothScroller } from "@/lib/scroll";
 export function initSmoothScroll(env: Env) {
   if (env.reducedMotion) return () => {};
 
-  const lenis = new Lenis({ autoRaf: false, lerp: 0.09 });
+  const lenis = new Lenis({ autoRaf: false, lerp: 0.1 });
   lenis.on("scroll", ScrollTrigger.update);
   const stopFrame = onFrame((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);

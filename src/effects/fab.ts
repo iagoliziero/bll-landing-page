@@ -12,24 +12,43 @@ export function initFab() {
   const treatments = document.querySelector<HTMLElement>("[data-treatments]");
   if (!fab || !hero || !contact || !treatments) return () => {};
 
-  const update = () => {
-    const heroRect = hero.getBoundingClientRect();
-    const passedHero = -heroRect.top > heroRect.height * 0.7;
-    const beforeContact = contact.getBoundingClientRect().top > window.innerHeight * 0.4;
+  // Posições na página, medidas só quando o layout muda
+  let heroHeight = 0;
+  let contactTop = 0;
+  let treatmentsTop = 0;
+  let treatmentsBottom = 0;
+  const measure = () => {
+    const y = window.scrollY;
+    heroHeight = hero.offsetHeight;
+    const contactBox = contact.parentElement?.classList.contains("pin-spacer") ? contact.parentElement : contact;
+    contactTop = contactBox.getBoundingClientRect().top + y;
     const treatmentsRect = treatments.getBoundingClientRect();
+    treatmentsTop = treatmentsRect.top + y;
+    treatmentsBottom = treatmentsRect.bottom + y;
+  };
+
+  const update = () => {
+    const y = window.scrollY;
+    const height = window.innerHeight;
+    const passedHero = y > heroHeight * 0.7;
+    const beforeContact = contactTop - y > height * 0.4;
     const overPinnedCards =
-      treatments.hasAttribute("data-pinned") &&
-      treatmentsRect.top < window.innerHeight &&
-      treatmentsRect.bottom > 0;
+      treatments.hasAttribute("data-pinned") && treatmentsTop - y < height && treatmentsBottom - y > 0;
     fab.toggleAttribute("data-on", passedHero && beforeContact && !overPinnedCards);
   };
 
-  // Como no tema da navbar: calcula no quadro seguinte, depois dos pins.
+  // Calcula no quadro seguinte, depois dos pins
   let dirty = true;
   const markDirty = () => {
     dirty = true;
   };
-  const trigger = ScrollTrigger.create({ start: 0, end: "max", onUpdate: markDirty, onRefresh: markDirty });
+  const onRefresh = () => {
+    measure();
+    dirty = true;
+  };
+  ScrollTrigger.addEventListener("refresh", onRefresh);
+  const trigger = ScrollTrigger.create({ start: 0, end: "max", onUpdate: markDirty });
+  measure();
   const stopFrame = onFrame(() => {
     if (!dirty) return;
     dirty = false;
@@ -39,6 +58,7 @@ export function initFab() {
   return () => {
     stopFrame();
     trigger.kill();
+    ScrollTrigger.removeEventListener("refresh", onRefresh);
     fab.removeAttribute("data-on");
   };
 }

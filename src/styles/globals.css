@@ -1,6 +1,15 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
+/* O Tailwind procura classes em todos os arquivos do projeto. Estas pastas não
+   fazem parte do site (skills, protótipo, fotos originais, revisões) e só
+   deixariam o CSS maior e a compilação mais lenta. */
+@source not "../../.claude";
+@source not "../../referencia";
+@source not "../../.impeccable";
+@source not "../../assets";
+@source not "../../scripts";
+
 /* Tokens da identidade visual (referencia/prompt.md, "Identidade visual"). */
 @theme {
   --color-verde: #0b5d4b;

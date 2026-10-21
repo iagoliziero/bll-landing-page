@@ -55,9 +55,10 @@ export function initContactReveal(env: Env) {
 
   // Quanto da seção já está à vista, de 0 até 1,3 tela
   const progressAt = (visible: number) => smoothstep(0, 1, visible / (window.innerHeight * CONTACT_SCREENS));
+  // Tamanho do painel medido só no refresh, não a cada quadro
+  let width = panel.offsetWidth;
+  let height = panel.offsetHeight;
   const render = (visible: number) => {
-    const width = panel.offsetWidth;
-    const height = panel.offsetHeight;
     setCircle(panel, progressAt(visible), width / 2, Math.min(height, Math.max(0, visible)), width, height);
   };
 
@@ -66,7 +67,11 @@ export function initContactReveal(env: Env) {
     start: "top bottom",
     end: () => `+=${window.innerHeight * CONTACT_SCREENS}`,
     onUpdate: (self) => render(self.progress * window.innerHeight * CONTACT_SCREENS),
-    onRefresh: (self) => render(self.progress * window.innerHeight * CONTACT_SCREENS),
+    onRefresh: (self) => {
+      width = panel.offsetWidth;
+      height = panel.offsetHeight;
+      render(self.progress * window.innerHeight * CONTACT_SCREENS);
+    },
   });
 
   // A página acaba antes de 1,3 tela de rolagem quando o painel é mais baixo que

@@ -10,8 +10,10 @@ export function initHeroParallax(env: Env) {
   const content = document.querySelector<HTMLElement>("[data-hero-content]");
   if (!hero || !photo || !content) return () => {};
 
+  // Altura do hero medida só no refresh, não a cada quadro
+  let heroHeight = hero.offsetHeight;
   const apply = (progress: number) => {
-    const scrolled = progress * hero.offsetHeight;
+    const scrolled = progress * heroHeight;
     if (!env.reducedMotion) {
       photo.style.transform = `translate3d(0, ${(scrolled * 0.35).toFixed(1)}px, 0) scale(${(1 + progress * 0.08).toFixed(4)})`;
       content.style.transform = `translate3d(0, ${(-scrolled * 0.18).toFixed(1)}px, 0)`;
@@ -24,7 +26,10 @@ export function initHeroParallax(env: Env) {
     start: "top top",
     end: "bottom top",
     onUpdate: (self) => apply(self.progress),
-    onRefresh: (self) => apply(self.progress),
+    onRefresh: (self) => {
+      heroHeight = hero.offsetHeight;
+      apply(self.progress);
+    },
   });
 
   return () => {

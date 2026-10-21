@@ -132,8 +132,13 @@ export function createHeroLiquid({ canvas, image, frame, position }: Options): H
 
   let width = 0;
   let height = 0;
+  // Posição do ponteiro em px da tela (para a velocidade) e normalizada sobre a
+  // foto (para o pincel). A foto é medida no evento do ponteiro, não a cada
+  // quadro, para não forçar o navegador a recalcular o layout na animação.
   let pointerX = 0;
   let pointerY = 0;
+  let pointerU = 0;
+  let pointerV = 0;
   let lastX = 0;
   let lastY = 0;
   let hasPointer = false;
@@ -177,6 +182,9 @@ export function createHeroLiquid({ canvas, image, frame, position }: Options): H
     if (event.pointerType !== "mouse") return;
     pointerX = event.clientX;
     pointerY = event.clientY;
+    const rect = frame.getBoundingClientRect();
+    pointerU = (pointerX - rect.left) / rect.width;
+    pointerV = (pointerY - rect.top) / rect.height;
     if (!hasPointer) {
       lastX = pointerX;
       lastY = pointerY;
@@ -198,10 +206,9 @@ export function createHeroLiquid({ canvas, image, frame, position }: Options): H
     trailContext.fillRect(0, 0, trail.width, trail.height);
 
     if (hasPointer) {
-      const rect = frame.getBoundingClientRect();
       const speed = Math.hypot(pointerX - lastX, pointerY - lastY) / Math.max(steps, 0.0001);
-      const x = ((pointerX - rect.left) / rect.width) * trail.width;
-      const y = ((pointerY - rect.top) / rect.height) * trail.height;
+      const x = pointerU * trail.width;
+      const y = pointerV * trail.height;
       const radius = trail.width * 0.13;
       const alpha = Math.min(1, speed / 30) * 0.55 + 0.06;
       const brush = trailContext.createRadialGradient(x, y, 0, x, y, radius);
