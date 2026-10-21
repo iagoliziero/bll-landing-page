@@ -501,6 +501,29 @@
   display: inline-block;
 }
 
+/* Com JavaScript, as letras começam abaixo da máscara (efeito splitChars) */
+@media (prefers-reduced-motion: no-preference) {
+  .js .split-char {
+    transform: translateY(110%);
+  }
+}
+
+/* Enquanto o contato fica fixo no fim da página, o espaço que a seção deixa
+   acima dela continua menta */
+.pin-spacer:has(> [data-contact]) {
+  background: var(--color-menta);
+}
+
+/* Reduced motion: o círculo do painel vira fade */
+[data-contact][data-fade] .contact-panel {
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+
+[data-contact][data-fade][data-visible] .contact-panel {
+  opacity: 1;
+}
+
 /* ---------- Abertura ---------- */
 
 .intro {

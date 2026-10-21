@@ -3,6 +3,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { queries, type Env } from "@/lib/env";
 import { initActions } from "./actions";
 import { initCardSpotlight } from "./cardSpotlight";
+import { initContactReveal } from "./circleReveal";
 import { initCursor } from "./cursor";
 import { initFab } from "./fab";
 import { initHeroParallax } from "./heroParallax";
@@ -13,6 +14,7 @@ import { initNavTheme } from "./navTheme";
 import { initPainMap } from "./painMap";
 import { initPostureWipe } from "./postureWipe";
 import { initSmoothScroll } from "./smoothScroll";
+import { initSplitChars } from "./splitChars";
 import { initTimeline } from "./timeline";
 
 type Cleanup = () => void;
@@ -51,6 +53,8 @@ export function initEffects(): Cleanup {
         initPainMap(env),
         initTimeline(),
         initPostureWipe(),
+        initContactReveal(env),
+        initSplitChars(env),
         initCursor(env),
         initMagnetic(env),
       ];
