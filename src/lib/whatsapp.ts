@@ -10,11 +10,15 @@ export function whatsappUrl(message: string) {
   return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
-// "5511912345678" → "(11) 91234-5678"
+// DDD + número → "(11) 91234-5678" ou "(11) 3234-5678"
+export function formatPhone(digits: string) {
+  if (digits.length < 10 || digits.length > 11) return digits;
+  const ddd = digits.slice(0, 2);
+  const rest = digits.slice(2);
+  return `(${ddd}) ${rest.slice(0, -4)}-${rest.slice(-4)}`;
+}
+
+// Número da BLL para exibir (sem o 55 do Brasil)
 export function whatsappDisplay() {
-  if (!whatsappReady) return "[WhatsApp]";
-  const local = number.slice(2);
-  const ddd = local.slice(0, 2);
-  const rest = local.slice(2);
-  return `(${ddd}) ${rest.slice(0, rest.length - 4)}-${rest.slice(-4)}`;
+  return whatsappReady ? formatPhone(number.slice(2)) : "[WhatsApp]";
 }

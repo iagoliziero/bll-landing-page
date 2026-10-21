@@ -5,7 +5,7 @@ import { IconBrandWhatsapp, IconCalendarCheck, IconChevronDown } from "@tabler/i
 import { buttonClasses } from "@/components/buttonClasses";
 import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { contact, treatments, whatsappMessages } from "@/data/content";
-import { whatsappReady, whatsappUrl } from "@/lib/whatsapp";
+import { formatPhone, whatsappReady, whatsappUrl } from "@/lib/whatsapp";
 
 type Field = "name" | "phone" | "treatment";
 
@@ -58,7 +58,7 @@ export function ContactForm() {
     }
 
     setError(null);
-    const message = whatsappMessages.form({ name, treatment, phone });
+    const message = whatsappMessages.form({ name, treatment, phone: formatPhone(phone) });
     if (whatsappReady) {
       window.open(whatsappUrl(message), "_blank", "noopener");
       setNotice(contact.sent);

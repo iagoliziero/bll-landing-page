@@ -33,7 +33,7 @@ export const hero = {
   // A palavra em `struck` recebe o traço verde depois da entrada.
   title: { lines: ["Menos dor.", "Mais movimento."], struck: "dor" },
   subtitle:
-    "A BLL leva a fisioterapia até a sua casa para tratar dor de cabeça tensional, DTM, dores no pescoço e nas costas e a recuperação de quem treina.",
+    "A BLL leva a fisioterapia até a sua casa para tratar dor de cabeça tensional, DTM e dores no pescoço e nas costas, e para cuidar da recuperação de quem treina.",
   primaryCta: "Agendar avaliação pelo WhatsApp",
   secondaryCta: "Ver tratamentos",
   trust: [
@@ -48,14 +48,14 @@ export const hero = {
   } satisfies Photo,
   painCard: {
     title: "Onde dói?",
-    text: "Toque e veja como a BLL pode ajudar.",
+    text: "Escolha a região e veja como a BLL pode ajudar.",
     regions: ["pescoco", "mandibula", "costas", "ombro", "joelho"] satisfies RegionId[],
   },
 };
 
 export const treatmentsSection = {
   title: "Tratamentos",
-  text: "A BLL trata a dor e o que está causando ela, com sessões na sua casa.",
+  text: "A BLL trata a dor e o que está por trás dela, com sessões na sua casa.",
   // Contador da faixa de cards: "1 de 4".
   counterSeparator: "de",
   goalLabel: "Objetivo:",
@@ -114,7 +114,7 @@ export const treatments: {
 
 export const painMapSection = {
   title: "Onde dói?",
-  text: "Toque na região e veja o tratamento indicado.",
+  text: "Escolha a região e veja o tratamento indicado.",
   defaultRegion: "costas" as RegionId,
   treatmentLabel: "Tratamento indicado:",
   cta: "Agendar para este caso",
@@ -196,7 +196,7 @@ export const howItWorks = {
     },
     {
       title: "Orientações e prevenção",
-      text: "Você recebe orientações para o dia a dia e para o treino, para manter o resultado.",
+      text: "Você recebe orientações para o dia a dia e para o treino, para continuar o cuidado entre as sessões.",
     },
   ],
 };
@@ -226,7 +226,7 @@ export const contact = {
     phone: "Informe o WhatsApp com DDD.",
     treatment: "Escolha o tratamento.",
   },
-  sent: 'Abrimos o WhatsApp com a sua mensagem. Se a conversa não abriu, toque em "Chamar direto no WhatsApp".',
+  sent: 'Abrimos o WhatsApp com a sua mensagem. Se a conversa não abriu, use o botão "Chamar direto no WhatsApp".',
   // Aparecem só enquanto o número do WhatsApp não estiver em src/config/site.ts.
   notConfigured:
     "Configure o número do WhatsApp em src/config/site.ts para este botão abrir a conversa.",
