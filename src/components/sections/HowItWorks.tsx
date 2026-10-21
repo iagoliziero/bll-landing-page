@@ -41,11 +41,11 @@ export function HowItWorks() {
           <li key={step.title} data-timeline-step data-on="" className="timeline-step">
             <span
               aria-hidden="true"
-              className="block text-number leading-[0.9] font-extrabold tracking-[-0.04em] text-verde"
+              className="timeline-number block text-number leading-[0.9] font-extrabold tracking-[-0.04em] text-verde"
             >
               {index + 1}
             </span>
-            <h3 className="mt-2 mb-1.5 text-card-title font-bold tracking-[-0.02em] text-tinta">
+            <h3 className="timeline-title mt-2 mb-1.5 text-card-title font-bold tracking-[-0.02em] text-tinta">
               {step.title}
             </h3>
             <p className="text-body text-secundario">{step.text}</p>

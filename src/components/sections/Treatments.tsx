@@ -48,7 +48,7 @@ export function Treatments() {
 
         <div
           data-treatments-viewport
-          className="treatments-viewport mt-auto flex snap-x snap-mandatory overflow-x-auto pt-8 pb-7.5"
+          className="treatments-viewport mt-auto flex snap-x snap-mandatory overflow-x-auto pt-8 pb-24 sm:pb-7.5"
         >
           <ul
             data-treatments-track

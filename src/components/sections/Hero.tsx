@@ -67,7 +67,7 @@ export function Hero() {
               <span>{secondLine}</span>
             </span>
           </h1>
-          <p className="hero-fade hero-fade-1 mt-4 max-w-117.5 text-intro text-white/90">
+          <p className="hero-sub mt-4 max-w-117.5 text-intro text-white/90">
             {hero.subtitle}
           </p>
           <div className="hero-fade hero-fade-2 mt-5.5 flex flex-wrap gap-2.5">

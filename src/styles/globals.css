@@ -14,6 +14,7 @@
   --color-linha: #dce6e2;
   --color-dor: #ff6b5b;
   --color-erro: #ffd0d0;
+  --color-cinza: #7d8f8a;
 
   --font-sans: var(--font-figtree), system-ui, sans-serif;
 
@@ -71,6 +72,8 @@
 @layer base {
   html {
     background: var(--color-verde);
+    scrollbar-color: var(--color-verde-vivo) var(--color-verde-escuro);
+    scrollbar-width: thin;
   }
 
   body {
@@ -106,9 +109,10 @@
 /* ---------- Hero ---------- */
 
 .hero-media {
-  transform: scale(1);
+  transition: opacity 0.6s;
 }
 
+/* Canvas da foto líquida, criado pelo efeito liquidPhoto depois da entrada */
 .hero-canvas {
   position: absolute;
   inset: 0;
@@ -116,6 +120,7 @@
   width: 100%;
   height: 100%;
   opacity: 0;
+  transition: opacity 0.6s;
 }
 
 /* A cena WebGL substitui a foto só depois de desenhar o primeiro quadro */
@@ -443,15 +448,27 @@
   left: 0;
 }
 
+/* Etapas que a linha ainda não alcançou: número em cinza e título em texto
+   secundário, os dois com contraste AA; acendem em verde e tinta */
 .timeline-step {
-  transition:
-    opacity 0.5s,
-    transform 0.6s var(--ease-out-soft);
+  transition: transform 0.6s var(--ease-out-soft);
+}
+
+.timeline-number,
+.timeline-title {
+  transition: color 0.5s;
 }
 
 .js .timeline-step:not([data-on]) {
-  opacity: 0.28;
   transform: translateY(10px);
+}
+
+.js .timeline-step:not([data-on]) .timeline-number {
+  color: var(--color-cinza);
+}
+
+.js .timeline-step:not([data-on]) .timeline-title {
+  color: var(--color-secundario);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -539,6 +556,10 @@
 
 /* ---------- Abertura ---------- */
 
+/* Toda a sequência de abertura e de entrada do hero é feita com animações CSS em
+   tempos fixos, contados da primeira pintura. Assim ela não espera o
+   JavaScript da página, que no celular pode ocupar o processador nesse momento. */
+
 .intro {
   position: fixed;
   inset: 0;
@@ -548,19 +569,19 @@
   justify-content: center;
   background: var(--color-verde);
   color: #fff;
-  transition:
-    opacity 0.35s,
-    visibility 0s 0.35s;
 }
 
+/* A tela some aos 0,85s, depois que a logo se desenha e a cabeça entra */
 .js .intro {
   display: flex;
+  animation: intro-out 0.35s ease 0.85s forwards;
 }
 
+/* Some na hora se a pessoa rolar, clicar, tocar ou usar o teclado */
 .intro-done .intro {
+  animation: none;
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
 }
 
 .intro svg {
@@ -602,113 +623,128 @@
   }
 }
 
-/* ---------- Entrada do hero (começa com .intro-done) ---------- */
-
-/* A foto aparece por um círculo que se abre do centro, com zoom de 1,15 para 1 */
-.js .hero-photo {
-  clip-path: circle(0% at 50% 50%);
+@keyframes intro-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
-.intro-done .hero-photo {
-  clip-path: circle(75% at 50% 50%);
-  transition: clip-path 1.6s var(--ease-reveal);
+/* ---------- Entrada do hero (a partir de 0,85s) ---------- */
+
+/* A foto aparece por um círculo que se abre do centro em 1,6s, com zoom de 1,15 para 1 */
+.js .hero-photo {
+  animation: hero-circle 1.6s var(--ease-reveal) 0.85s both;
 }
 
 .js .hero-media {
-  transform: scale(1.15);
+  animation: hero-zoom 2s var(--ease-out-soft) 0.85s both;
 }
 
-.intro-done .hero-media {
-  transform: scale(1);
-  transition:
-    transform 2s var(--ease-out-soft),
-    opacity 0.6s;
+@keyframes hero-circle {
+  from {
+    clip-path: circle(0% at 50% 50%);
+  }
+
+  to {
+    clip-path: circle(75% at 50% 50%);
+  }
 }
 
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.15);
+  }
+}
+
+/* As linhas do título sobem de trás da máscara */
 .js .hero-line > span {
-  transform: translateY(105%);
+  animation: hero-rise 1s var(--ease-out-soft) 0.9s both;
 }
 
-.intro-done .hero-line > span {
-  transform: none;
-  transition: transform 1s var(--ease-out-soft) 0.05s;
+.js .hero-line:nth-child(2) > span {
+  animation-delay: 1s;
 }
 
-.intro-done .hero-line:nth-child(2) > span {
-  transition-delay: 0.15s;
+@keyframes hero-rise {
+  from {
+    transform: translateY(105%);
+  }
 }
 
-/* O traço risca "dor" cerca de 1,5s depois da entrada */
+/* Cerca de 1,5s depois da entrada, o traço risca "dor", que fica com 60% de opacidade */
 .js .hero-struck {
-  opacity: 1;
+  animation: hero-dim 0.6s 2.85s both;
 }
 
 .js .hero-struck i {
-  transform: scaleX(0);
   transform-origin: 0 50%;
+  animation: hero-strike 0.7s var(--ease-draw) 2.45s both;
 }
 
-.intro-done .hero-struck {
-  opacity: 0.6;
-  transition: opacity 0.6s 2s;
+@keyframes hero-dim {
+  from {
+    opacity: 1;
+  }
 }
 
-.intro-done .hero-struck i {
-  transform: scaleX(1);
-  transition: transform 0.7s var(--ease-draw) 1.6s;
+@keyframes hero-strike {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* O subtítulo já está pintado embaixo da abertura e só sobe um pouco;
+   selo, botões, selos de confiança e cartão também aparecem em fade */
+.js .hero-sub {
+  animation: hero-up 0.7s var(--ease-out-soft) 1.05s both;
 }
 
 .js .hero-fade {
-  opacity: 0;
-  transform: translateY(10px);
+  animation: hero-fade-up 0.7s var(--ease-out-soft) 1.05s both;
 }
 
-.intro-done .hero-fade {
-  opacity: 1;
-  transform: none;
-  transition:
-    opacity 0.7s 0.2s,
-    transform 0.7s var(--ease-out-soft) 0.2s;
+.js .hero-fade-2 {
+  animation-delay: 1.15s;
 }
 
-.intro-done .hero-fade-1 {
-  transition-delay: 0.3s;
+.js .hero-fade-3 {
+  animation-delay: 1.25s;
 }
 
-.intro-done .hero-fade-2 {
-  transition-delay: 0.4s;
+@keyframes hero-up {
+  from {
+    transform: translateY(10px);
+  }
 }
 
-.intro-done .hero-fade-3 {
-  transition-delay: 0.5s;
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }
 
 /* Com reduced motion, o círculo vira fade e nada se desloca */
 @media (prefers-reduced-motion: reduce) {
   .js .hero-photo {
-    clip-path: none;
-    opacity: 0;
-  }
-
-  .intro-done .hero-photo {
-    opacity: 1;
-    transition: opacity 0.8s;
+    animation: hero-fade-in 0.8s 0.85s both;
   }
 
   .js .hero-media,
-  .intro-done .hero-media,
+  .js .hero-sub {
+    animation: none;
+  }
+
   .js .hero-line > span,
   .js .hero-fade {
-    transform: none;
+    animation-name: hero-fade-in;
   }
+}
 
-  .js .hero-line > span {
+@keyframes hero-fade-in {
+  from {
     opacity: 0;
-  }
-
-  .intro-done .hero-line > span {
-    opacity: 1;
-    transition: opacity 0.6s;
   }
 }
 

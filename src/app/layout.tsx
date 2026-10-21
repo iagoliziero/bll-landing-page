@@ -32,17 +32,17 @@ export const viewport: Viewport = {
 };
 
 // Roda durante a leitura do HTML, antes da primeira pintura:
-// - .js liga os estados iniciais dos efeitos (sem ela, tudo aparece pronto);
-// - .intro-done encerra a abertura quando a cabeça da logo termina de entrar,
-//   quando a pessoa rola, clica, toca ou usa o teclado, ou depois de 2,5s.
+// - .js liga a abertura e os estados iniciais dos efeitos (sem ela, tudo
+//   aparece pronto);
+// - .intro-done tira a abertura da frente na hora se a pessoa rolar, clicar,
+//   tocar ou usar o teclado, ou se chegar por um link para uma seção. Sem
+//   isso, a abertura acaba sozinha, em CSS (src/styles/globals.css).
 const bootScript = `(function(){
-var d=document.documentElement,done=false;
+var d=document.documentElement;
 d.classList.add("js");
-function end(){if(done)return;done=true;d.classList.add("intro-done")}
+function end(){d.classList.add("intro-done")}
 if(location.hash)end();
-document.addEventListener("animationend",function(e){if(e.animationName==="intro-head")end()});
 ["wheel","touchstart","pointerdown","keydown"].forEach(function(t){addEventListener(t,end,{once:true,passive:true})});
-setTimeout(end,2500);
 })()`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

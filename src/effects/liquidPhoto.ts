@@ -25,10 +25,12 @@ export function initLiquidPhoto(env: Env) {
     const texture = new Image();
     texture.src = photo.currentSrc || photo.src;
     await texture.decode();
+    // Espera o zoom de entrada da foto acabar: a cena entra já na escala final.
+    await Promise.all(photo.getAnimations().map((animation) => animation.finished));
     if (cancelled) return;
 
     canvas = document.createElement("canvas");
-    canvas.className = "hero-media hero-canvas";
+    canvas.className = "hero-canvas";
     canvas.setAttribute("aria-hidden", "true");
     photo.after(canvas);
     scene = createHeroLiquid({ canvas, image: texture, frame, position: [0.6, 0.6] });
