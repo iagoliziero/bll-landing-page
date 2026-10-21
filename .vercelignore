@@ -1,0 +1,22 @@
+# Arquivos que não sobem para a Vercel. Nada disto é usado pelo build
+# (next build) nem pelo site publicado.
+
+# Skills e configurações do Claude Code e da impeccable
+/.claude
+/.impeccable
+/skills-lock.json
+
+# Fotos originais e o script que as converte. O site usa as versões já
+# convertidas em public/images (npm run images, rodado antes do commit).
+/assets
+/scripts
+
+# Especificação, inspirações e documentação do projeto
+/referencia
+/dev-inspiracoes
+/AGENTS.md
+/DESIGN.md
+/PRODUCT.md
+
+# Deploy na Netlify
+/netlify.toml

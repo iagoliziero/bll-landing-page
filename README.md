@@ -65,6 +65,8 @@ Antes de publicar, defina a variável `NEXT_PUBLIC_SITE_URL` com o endereço fin
 2. Em **Environment Variables**, adicione `NEXT_PUBLIC_SITE_URL`.
 3. Clique em **Deploy**.
 
+O `.vercelignore` deixa de fora do envio o que o build não usa: as skills (`.claude`), as fotos originais (`assets`), a especificação e a documentação. Como as fotos originais não sobem, rode `npm run images` e faça o commit de `public/images` antes do deploy sempre que trocar uma foto.
+
 ### Netlify
 
 1. Em [app.netlify.com](https://app.netlify.com), escolha **Add new site → Import an existing project** e selecione o repositório.
