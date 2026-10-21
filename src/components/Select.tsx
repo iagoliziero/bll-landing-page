@@ -164,7 +164,7 @@ export function Select({ name, label, placeholder, options, value, onChange, inv
         tabIndex={-1}
         data-open={open || undefined}
         data-lenis-prevent
-        className="select-list absolute inset-x-0 top-full z-20 mt-2 rounded-panel border border-white/15 bg-verde-escuro p-1.5 sm:right-auto sm:w-[max(100%,21rem)]"
+        className="select-list absolute inset-x-0 top-full z-20 mt-2 rounded-panel border border-white/15 bg-verde-escuro p-1.5 lg:right-auto lg:w-[max(100%,21rem)]"
       >
         {options.map((option, index) => {
           const selected = index === selectedIndex;

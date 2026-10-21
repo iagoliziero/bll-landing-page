@@ -8,7 +8,6 @@ import { initCursor } from "./cursor";
 import { initElasticHeadings } from "./elasticHeadings";
 import { initFab } from "./fab";
 import { initHeroParallax } from "./heroParallax";
-import { initHorizontalTrack } from "./horizontalTrack";
 import { initLiquidPhoto } from "./liquidPhoto";
 import { initMagnetic } from "./magnetic";
 import { initNavTheme } from "./navTheme";
@@ -17,6 +16,7 @@ import { initPostureWipe } from "./postureWipe";
 import { initSmoothScroll } from "./smoothScroll";
 import { initSplitChars } from "./splitChars";
 import { initTextReveal } from "./textReveal";
+import { initTreatmentsReveal } from "./treatmentsReveal";
 import { initTimeline } from "./timeline";
 
 type Cleanup = () => void;
@@ -53,7 +53,7 @@ export function initEffects(): Cleanup {
         initFab(),
         initHeroParallax(env),
         initLiquidPhoto(env),
-        initHorizontalTrack(env),
+        initTreatmentsReveal(env),
         initCardSpotlight(env),
         initPainMap(env),
         initTimeline(env),

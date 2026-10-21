@@ -2,10 +2,10 @@ import Image from "next/image";
 import { buttonClasses } from "@/components/buttonClasses";
 import { treatments, treatmentsSection } from "@/data/content";
 
-// Sem JavaScript, no mobile e com reduced motion, a faixa de cards rola na
-// horizontal de forma nativa. No desktop, o efeito horizontalTrack fixa a seção
-// (depois do círculo de entrada) e move a faixa conforme a rolagem, como um
-// carrossel 3D com o card ativo no centro.
+// No mobile, a faixa de cards rola na horizontal de forma nativa, com snap e
+// contador. No tablet e no desktop, os quatro cards ficam à vista em grade (duas
+// e quatro colunas). O efeito treatmentsReveal abre a seção em um círculo e faz
+// os cards entrarem em sequência.
 export function Treatments() {
   return (
     <section
@@ -33,7 +33,7 @@ export function Treatments() {
           </div>
           <p
             aria-hidden="true"
-            className="hidden shrink-0 pt-2 text-right text-label text-secundario tabular-nums js:block"
+            className="hidden shrink-0 pt-2 text-right text-label text-secundario tabular-nums js:max-sm:block"
           >
             <b data-treatments-count className="font-bold text-tinta">
               1
@@ -51,28 +51,28 @@ export function Treatments() {
 
         <div
           data-treatments-viewport
-          className="treatments-viewport mt-auto flex snap-x snap-mandatory overflow-x-auto pt-8 pb-24 sm:pb-7.5"
+          className="treatments-viewport mt-auto flex snap-x snap-mandatory overflow-x-auto pt-8 pb-24 sm:block sm:overflow-visible sm:pb-7.5"
         >
           <ul
             data-treatments-track
-            className="treatments-track relative flex shrink-0 gap-4.5 px-page"
+            className="treatments-track flex shrink-0 gap-4.5 px-page sm:grid sm:grid-cols-2 lg:grid-cols-4"
           >
             {treatments.map((treatment) => (
               <li
                 key={treatment.id}
                 data-treatments-card
-                className="treatment-card relative flex w-[78vw] shrink-0 snap-start scroll-mx-[clamp(20px,4vw,64px)] flex-col overflow-hidden rounded-card border border-linha bg-white transition-colors duration-300 hover:border-verde-vivo sm:w-(--card-w)"
+                className="treatment-card relative flex w-[78vw] shrink-0 snap-start scroll-mx-[clamp(20px,4vw,64px)] flex-col overflow-hidden rounded-card border border-linha bg-white sm:w-auto"
               >
-                <div className="treatment-photo relative aspect-[16/10] overflow-hidden bg-menta">
+                <div data-treatments-photo className="treatment-photo relative aspect-16/10 overflow-hidden bg-menta">
                   <Image
                     src={treatment.image.src}
                     alt={treatment.image.alt}
                     fill
-                    sizes="(max-width: 639px) 78vw, 400px"
+                    sizes="(max-width: 639px) 78vw, (max-width: 1023px) 50vw, 25vw"
                     className="object-cover"
                   />
                 </div>
-                <div className="relative z-1 flex flex-1 flex-col px-4.5 pt-4 pb-4.5">
+                <div data-treatments-body className="relative z-1 flex flex-1 flex-col px-4.5 pt-4 pb-4.5">
                   <h3 className="mb-2 text-card-heading font-extrabold tracking-[-0.03em] text-tinta">
                     {treatment.name}
                   </h3>

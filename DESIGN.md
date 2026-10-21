@@ -164,11 +164,11 @@ Página de uma coluna, em blocos de seção que ocupam a largura toda. A margem 
 
 O hero e o palco dos tratamentos ocupam exatamente uma tela (100dvh). Mapa de dor e postura usam grade de duas colunas no desktop (0,75fr / 1,25fr e 1fr / 1fr) e uma coluna no mobile. As etapas vão de quatro colunas no desktop, com a linha do tempo na horizontal por cima, para uma coluna no mobile, com a linha na vertical ao lado, e o formulário de três campos para um.
 
-O ponto de quebra único é 640px. Acima dele, a faixa dos tratamentos corre na horizontal com a rolagem, 1px de faixa para cada 1px de rolagem, com o card ativo no centro. Abaixo, ela passa a uma faixa nativa com scroll-snap, cada card com 78vw.
+O ponto de quebra principal é 640px. Acima dele, os quatro tratamentos ficam à vista em grade (duas colunas no tablet, quatro a partir de 1024px). Abaixo, eles passam a uma faixa nativa com scroll-snap e contador, cada card com 78vw.
 
 ## Elevation & Depth
 
-O sistema é plano, sem sombras. A profundidade vem dos campos de cor que se sobrepõem, das fotos, do overlay verde em degradê sobre a foto do hero e do movimento: o carrossel 3D dos cards (cada card de distância do centro gira 22° de rotateY e recua 110px; no mobile, 16° e 60px), a inclinação de até 7° na direção do cursor e os recortes circulares que revelam uma seção por cima da outra.
+O sistema é plano, sem sombras. A profundidade vem dos campos de cor que se sobrepõem, das fotos, do overlay verde em degradê sobre a foto do hero (que se dissolve no verde da seção de baixo) e do movimento: a entrada dos cards em sequência (sobem 90px, a foto se descobre de baixo para cima desfazendo o zoom) e o card que sobe 6px no hover e os recortes circulares que revelam uma seção por cima da outra.
 
 ### Named Rules
 **A Regra Sem Sombra.** Nenhum elemento tem sombra. Para separar, use cor de fundo ou borda de 1px na cor linha, nunca as duas coisas com sombra junto.
@@ -198,7 +198,7 @@ Cantos suaves e consistentes por função: botões com 12px, caixas de mensagem 
 - **Background:** branco, sobre o fundo claro do palco.
 - **Shadow Strategy:** nenhuma (ver Elevation & Depth).
 - **Border:** 1px na cor linha, verde vivo no hover, com um holofote verde radial que segue o cursor e um brilho branco suave sobre a foto.
-- **Internal Padding:** 16px em cima, 18px nas laterais e embaixo. A foto fica em 16:10 no topo e corre por dentro do card, ao contrário do movimento da faixa e da inclinação.
+- **Internal Padding:** 16px em cima, 18px nas laterais e embaixo. A foto fica em 16:10 no topo, aproxima no hover (de 1,08 para 1,14) e se move de leve por dentro do card com o cursor.
 
 ### Inputs / Fields
 - **Style:** só sublinhado, 1px em branco a 35%, sobre o verde. Texto em 16px branco, placeholder em menta a 80%.

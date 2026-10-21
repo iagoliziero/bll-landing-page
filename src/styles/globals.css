@@ -145,6 +145,8 @@
    para os links da navbar sobre a parte clara da foto */
 .hero-overlay {
   background:
+    /* A base da foto se dissolve no verde da seção de baixo */
+    linear-gradient(0deg, var(--color-verde) 0, rgb(11 93 75 / 0.6) 12%, rgb(11 93 75 / 0) 34%),
     linear-gradient(180deg, rgb(8 52 43 / 0.55) 0, rgb(8 52 43 / 0) 140px),
     linear-gradient(
     90deg,
@@ -157,12 +159,15 @@
 
 @media (width < 40rem) {
   .hero-overlay {
-    background: linear-gradient(
-      180deg,
-      rgb(8 52 43 / 0.9) 0%,
-      rgb(8 52 43 / 0.75) 55%,
-      rgb(8 52 43 / 0.4) 100%
-    );
+    background:
+      /* A base da foto se dissolve no verde da seção de baixo */
+      linear-gradient(0deg, var(--color-verde) 0, rgb(11 93 75 / 0.6) 12%, rgb(11 93 75 / 0) 34%),
+      linear-gradient(
+        180deg,
+        rgb(8 52 43 / 0.9) 0%,
+        rgb(8 52 43 / 0.75) 55%,
+        rgb(8 52 43 / 0.4) 100%
+      );
   }
 }
 
@@ -222,41 +227,6 @@
   display: none;
 }
 
-/* Desktop: a seção fica fixa e o efeito horizontalTrack move a faixa */
-[data-pinned] .treatments-stage {
-  height: 100dvh;
-}
-
-[data-pinned] .treatments-viewport {
-  overflow: visible;
-  perspective: 1200px;
-  scroll-snap-type: none;
-}
-
-/* Largura dos cards no desktop: também define o recuo que centraliza o
-   primeiro card no começo e o último no fim da faixa */
-.treatments-track {
-  --card-w: clamp(262px, min(32vw, 52vh), 400px);
-}
-
-[data-pinned] .treatments-track {
-  padding-inline: calc(50% - var(--card-w) / 2);
-  transform-style: preserve-3d;
-  will-change: transform;
-}
-
-/* Num contexto 3D, a parte de um card que gira ou recua para trás da faixa fica
-   atrás do plano dela, e o mouse ali contaria como estando sobre a faixa. A
-   faixa ignora o mouse; só os cards o recebem. */
-[data-pinned] .treatments-track {
-  pointer-events: none;
-}
-
-[data-pinned] .treatment-card {
-  pointer-events: auto;
-  will-change: transform;
-}
-
 /* Reduced motion: o círculo de entrada vira fade */
 [data-fade] .treatments-stage {
   opacity: 0;
@@ -303,10 +273,40 @@
   opacity: 1;
 }
 
-/* A foto corre por dentro do card e acompanha a inclinação (efeito
-   horizontalTrack, que escreve o transform a cada quadro) */
-.js .treatment-photo img {
-  will-change: transform;
+/* Hover: o card sobe 6px com mola e a borda fica verde viva; a foto aproxima
+   e se move de leve com o cursor (--ix/--iy, efeito cardSpotlight). Usam as
+   propriedades translate e scale, que somam com o transform da entrada (GSAP). */
+.treatment-card {
+  transition:
+    translate 0.5s var(--ease-spring),
+    border-color 0.3s;
+}
+
+.treatment-card:hover {
+  translate: 0 -6px;
+  border-color: var(--color-verde-vivo);
+}
+
+.treatment-photo img {
+  scale: 1.08;
+  translate: var(--ix, 0px) var(--iy, 0px);
+  transition:
+    scale 0.7s var(--ease-out-soft),
+    translate 0.5s var(--ease-out-soft);
+}
+
+.treatment-card:hover .treatment-photo img {
+  scale: 1.14;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .treatment-card:hover {
+    translate: none;
+  }
+
+  .treatment-card:hover .treatment-photo img {
+    scale: 1.08;
+  }
 }
 
 /* ---------- Onde dói? ---------- */
