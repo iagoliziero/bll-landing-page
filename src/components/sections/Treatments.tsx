@@ -20,7 +20,7 @@ export function Treatments() {
     >
       <div
         data-treatments-stage
-        className="treatments-stage relative flex min-h-dvh flex-col overflow-hidden bg-fundo"
+        className="treatments-stage relative flex min-h-dvh flex-col justify-center overflow-hidden bg-fundo"
       >
         <div
           data-treatments-speech
@@ -31,7 +31,7 @@ export function Treatments() {
           </p>
         </div>
 
-        <div className="flex items-start justify-between gap-6 px-page pt-[clamp(76px,12vh,116px)]">
+        <div className="flex items-start justify-between gap-6 px-page pt-[clamp(76px,10vh,100px)]">
           <div>
             <h2 id="tratamentos-titulo" className="headline text-section text-tinta">
               <span data-elastic className="inline-block">
@@ -63,7 +63,7 @@ export function Treatments() {
 
         <div
           data-treatments-viewport
-          className="treatments-viewport mt-auto flex snap-x snap-mandatory overflow-x-auto pt-8 pb-24 sm:block sm:overflow-visible sm:pb-7.5"
+          className="treatments-viewport flex snap-x snap-mandatory overflow-x-auto pt-[clamp(24px,4.5vh,44px)] pb-24 sm:block sm:overflow-visible sm:pb-[clamp(28px,6vh,56px)]"
         >
           <ul
             data-treatments-track
