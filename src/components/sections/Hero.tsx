@@ -47,7 +47,8 @@ export function Hero() {
         data-hero-content
         className="relative z-2 px-page pt-[clamp(96px,16vh,170px)] pb-12 text-white"
       >
-        <div className="sm:w-[min(660px,68vw)]">
+        {/* 740px: cabe "movimento." inteira no tamanho máximo do título (130px) */}
+        <div className="sm:w-[min(740px,68vw)]">
           <p className="hero-fade inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/12 px-3 py-1.5 text-label font-semibold">
             <IconHome aria-hidden="true" className="size-4 text-verde-vivo" />
             {hero.badge}

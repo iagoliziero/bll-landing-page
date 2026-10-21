@@ -31,22 +31,14 @@ export function initTextReveal(env: Env) {
   const cleanups: Cleanup[] = [];
   const treatments = document.querySelector<HTMLElement>("[data-treatments]");
 
-  // Trecho da rolagem em que cada texto fica à vista. Fora dos tratamentos: do
-  // topo a 85% da tela até a base a 15% (perto do topo). Nos tratamentos, que
-  // ficam fixos: de quando a frase de abertura sai até o palco subir 25% da tela.
-  const rangeFor = (element: Element, start: string) =>
-    treatments?.contains(element)
-      ? {
-          trigger: treatments,
-          start: () => `top+=${window.innerHeight * TREATMENTS_CONTENT_AT} top`,
-          // O título fica perto do topo do palco: sai quando chega à borda de cima
-          end: "bottom 75%",
-        }
-      : { trigger: element, start, end: "bottom 15%" };
+  // Trecho da rolagem em que cada texto fica à vista: do topo a 85% da tela até
+  // a base a 15% (perto do topo)
+  const rangeFor = (element: Element, start: string) => ({ trigger: element, start, end: "bottom 15%" });
 
   const revealLines = (selector: string, options: LineOptions) => {
     document.querySelectorAll<HTMLElement>(selector).forEach((element) => {
       let trigger: ScrollTrigger | undefined;
+      let scrubbed: gsap.core.Tween | undefined;
       const split = SplitText.create(element, {
         type: "lines",
         mask: "lines",
@@ -59,7 +51,33 @@ export function initTextReveal(env: Env) {
         onSplit: (self) => {
           const previous = trigger;
           trigger?.kill();
+          scrubbed?.kill();
           const lines = self.lines;
+
+          // Nos tratamentos (fixos), o título e a introdução sobem presos à
+          // rolagem, junto com os cards, depois que a frase de abertura sai. Na
+          // volta, descem para a máscara antes de a frase voltar.
+          if (treatments?.contains(element)) {
+            const at = TREATMENTS_CONTENT_AT + options.delay * 0.3;
+            scrubbed = gsap.fromTo(
+              lines,
+              { yPercent: BELOW },
+              {
+                yPercent: 0,
+                ease: "power3.out",
+                stagger: options.stagger,
+                scrollTrigger: {
+                  trigger: treatments,
+                  start: () => `top+=${window.innerHeight * at} top`,
+                  end: () => `top+=${window.innerHeight * (at + 0.28)} top`,
+                  scrub: 0.6,
+                  invalidateOnRefresh: true,
+                },
+              },
+            );
+            trigger = scrubbed.scrollTrigger;
+            return;
+          }
           const show = () =>
             gsap.to(lines, {
               yPercent: 0,
@@ -95,6 +113,7 @@ export function initTextReveal(env: Env) {
       });
       cleanups.push(() => {
         trigger?.kill();
+        scrubbed?.kill();
         split.revert();
       });
     });
