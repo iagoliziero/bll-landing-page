@@ -66,6 +66,8 @@ export const treatmentsSection = {
 export const treatments: {
   id: TreatmentId;
   name: string;
+  // Linha curta que aparece embaixo do nome na lista do formulário
+  hint: string;
   description: string;
   goal: string;
   image: Photo;
@@ -73,6 +75,7 @@ export const treatments: {
   {
     id: "cervical-dtm",
     name: "Cervical e DTM",
+    hint: "Dor de cabeça tensional, pescoço e mandíbula",
     description:
       "Para quem tem dor de cabeça tensional, pescoço travado ou dor ao mastigar e abrir a boca.",
     goal: "passar o dia sem dor de cabeça e mastigar sem desconforto.",
@@ -84,6 +87,7 @@ export const treatments: {
   {
     id: "coluna-lombar",
     name: "Coluna e lombar",
+    hint: "Dor nas costas de quem passa o dia sentado",
     description: "Para quem sente dor nas costas que piora depois de um dia inteiro sentado.",
     goal: "terminar o dia de trabalho sem as costas pesando.",
     image: {
@@ -94,6 +98,7 @@ export const treatments: {
   {
     id: "recuperacao-muscular",
     name: "Recuperação muscular",
+    hint: "Músculo dolorido ou sobrecarregado pelo treino",
     description: "Para quem treina e está com o músculo dolorido ou sobrecarregado.",
     goal: "treinar de novo sem aquela dor que não passa.",
     image: {
@@ -104,6 +109,7 @@ export const treatments: {
   {
     id: "mobilidade",
     name: "Mobilidade",
+    hint: "Corpo travado para agachar, correr ou alongar",
     description: "Para quem sente o corpo travado para agachar, correr ou se alongar.",
     goal: "agachar e correr sem sentir o corpo travado.",
     image: {

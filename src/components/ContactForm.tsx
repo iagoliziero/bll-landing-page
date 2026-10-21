@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { IconBrandWhatsapp, IconCalendarCheck, IconChevronDown } from "@tabler/icons-react";
+import { IconBrandWhatsapp, IconCalendarCheck } from "@tabler/icons-react";
 import { buttonClasses } from "@/components/buttonClasses";
+import { Select } from "@/components/Select";
 import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { contact, treatments, whatsappMessages } from "@/data/content";
 import { formatPhone, whatsappReady, whatsappUrl } from "@/lib/whatsapp";
@@ -14,6 +15,8 @@ type Field = "name" | "phone" | "treatment";
 // não configurado.
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
+  const treatmentRef = useRef<HTMLDivElement>(null);
+  const [treatment, setTreatment] = useState("");
   const [error, setError] = useState<{ field: Field; message: string } | null>(null);
   const [notice, setNotice] = useState("");
 
@@ -22,9 +25,7 @@ export function ContactForm() {
     if (!form) return;
 
     const onPick = (event: Event) => {
-      const { treatment } = (event as CustomEvent<{ treatment: string }>).detail;
-      const select = form.elements.namedItem("treatment") as HTMLSelectElement;
-      select.value = treatment;
+      setTreatment((event as CustomEvent<{ treatment: string }>).detail.treatment);
       setError(null);
       setNotice("");
     };
@@ -47,13 +48,13 @@ export function ContactForm() {
     const data = new FormData(form);
     const name = String(data.get("name") ?? "").trim();
     const phone = String(data.get("phone") ?? "").replace(/\D/g, "");
-    const treatment = String(data.get("treatment") ?? "");
 
     const invalid: Field | null = !name ? "name" : phone.length < 10 ? "phone" : !treatment ? "treatment" : null;
     if (invalid) {
       setError({ field: invalid, message: contact.errors[invalid] });
       setNotice("");
-      (form.elements.namedItem(invalid) as HTMLElement).focus();
+      if (invalid === "treatment") treatmentRef.current?.focus();
+      else (form.elements.namedItem(invalid) as HTMLElement).focus();
       return;
     }
 
@@ -108,28 +109,20 @@ export function ContactForm() {
             className={inputClass}
           />
         </label>
-        <label className="relative block">
-          <span className={labelClass}>{contact.fields.treatment.label}</span>
-          <select
-            {...fieldProps("treatment")}
-            onChange={clearError}
-            defaultValue=""
-            className={`${inputClass} cursor-pointer appearance-none`}
-          >
-            <option value="" className="text-tinta">
-              {contact.fields.treatment.placeholder}
-            </option>
-            {treatments.map((treatment) => (
-              <option key={treatment.id} className="text-tinta">
-                {treatment.name}
-              </option>
-            ))}
-          </select>
-          <IconChevronDown
-            aria-hidden="true"
-            className="pointer-events-none absolute right-0 bottom-3 size-4 text-white/72"
-          />
-        </label>
+        <Select
+          ref={treatmentRef}
+          name="treatment"
+          label={contact.fields.treatment.label}
+          placeholder={contact.fields.treatment.placeholder}
+          options={treatments.map((item) => ({ value: item.name, hint: item.hint }))}
+          value={treatment}
+          onChange={(next) => {
+            setTreatment(next);
+            clearError();
+          }}
+          invalid={error?.field === "treatment"}
+          describedBy={error?.field === "treatment" ? "contato-erro" : undefined}
+        />
         <div className="col-span-full mt-2 flex flex-wrap items-center gap-3">
           <button type="submit" data-magnetic className={buttonClasses("accent", "lg")}>
             <IconCalendarCheck aria-hidden="true" />

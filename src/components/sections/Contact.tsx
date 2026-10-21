@@ -40,7 +40,7 @@ export function Contact() {
     >
       <div
         data-contact-panel
-        className="contact-panel relative overflow-hidden bg-verde px-page pt-[clamp(100px,15vh,170px)] pb-[clamp(60px,10vh,120px)] text-white"
+        className="contact-panel relative bg-verde px-page pt-[clamp(100px,15vh,170px)] pb-[clamp(60px,10vh,120px)] text-white"
       >
         <h2 id="contato-titulo" className="headline text-contact">
           <span className="sr-only">{contact.title}</span>

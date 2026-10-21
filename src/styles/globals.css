@@ -538,6 +538,34 @@
   }
 }
 
+/* Lista do select de tratamento (Select.tsx) */
+.select-list {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.2s,
+    transform 0.25s var(--ease-out-soft),
+    visibility 0s 0.25s;
+}
+
+.select-list[data-open] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.2s,
+    transform 0.25s var(--ease-out-soft),
+    visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .select-list,
+  .select-list[data-open] {
+    transform: none;
+  }
+}
+
 /* Enquanto o contato fica fixo no fim da página, o espaço que a seção deixa
    acima dela continua menta */
 .pin-spacer:has(> [data-contact]) {

@@ -1,7 +1,7 @@
 import type { Env } from "@/lib/env";
 import { onFrame } from "@/lib/loop";
 
-const INTERACTIVE = "a, button, input, select, label, [data-pain-marker]";
+const INTERACTIVE = "a, button, input, select, label, [role=combobox], [role=option], [data-pain-marker]";
 
 // Cursor de anel + ponto (mix-blend-mode difference). O anel segue o ponteiro
 // com atraso e cresce sobre botões e links. Só com mouse e sem reduced motion.
