@@ -6,6 +6,7 @@
    deixariam o CSS maior e a compilação mais lenta. */
 @source not "../../.claude";
 @source not "../../referencia";
+@source not "../../dev-inspiracoes";
 @source not "../../.impeccable";
 @source not "../../assets";
 @source not "../../scripts";
@@ -225,6 +226,16 @@
 
 .treatments-viewport::-webkit-scrollbar {
   display: none;
+}
+
+/* Frase de abertura: só existe com o efeito ligado (data-speech, efeito
+   treatmentsReveal); começa apagada e cada palavra acende com a rolagem */
+.treatments-speech {
+  display: none;
+}
+
+[data-speech] .treatments-speech {
+  display: flex;
 }
 
 /* Reduced motion: o círculo de entrada vira fade */

@@ -21,3 +21,6 @@ npm-debug.log*
 
 # capturas de revisão da skill impeccable
 /.impeccable/review/
+
+# Referências locais de inspiração (só em dev, não sobem)
+/dev-inspiracoes/

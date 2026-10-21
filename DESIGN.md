@@ -217,7 +217,7 @@ Cantos suaves e consistentes por função: botões com 12px, caixas de mensagem 
 - **Mobile:** abaixo de 640px ficam só a logo e o botão "Agendar".
 
 ### Revelação circular (assinatura)
-Seções se abrem por um `clip-path: circle()` que cresce com a rolagem e leva pelo menos uma altura de tela: dos tratamentos, a partir do cursor; do contato, a partir da base visível da seção. Com reduced motion, o círculo vira fade.
+Seções se abrem por um `clip-path: circle()` que cresce com a rolagem. Nos tratamentos, o círculo nasce do cursor e abre rápido (meia tela, easeInOutCubic); lá dentro, uma frase grande em 700 acende palavra por palavra (de 16% de opacidade para 100%) ao longo de quase uma tela, sobe e sai, e só então o título e os cards entram. No contato, ele nasce da base visível da seção e leva 1,3 tela. Com reduced motion, o círculo vira fade.
 
 ## Do's and Don'ts
 

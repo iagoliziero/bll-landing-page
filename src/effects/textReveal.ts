@@ -2,13 +2,11 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import type { Env } from "@/lib/env";
+import { TREATMENTS_CONTENT_AT } from "./treatmentsReveal";
 
 // Cores do texto da postura na leitura guiada (tokens secundario e tinta)
 const READ_FROM = "#4a5d58";
 const READ_TO = "#10241f";
-// Nos tratamentos, o título sobe quando o círculo de entrada (1,1 tela) chega
-// perto da metade, para a subida acontecer à vista.
-const TREATMENTS_REVEAL_AT = 1.1 * 0.45;
 // Linhas escondidas abaixo (105) ou acima (-105) da máscara
 const BELOW = 105;
 const ABOVE = -105;
@@ -35,13 +33,14 @@ export function initTextReveal(env: Env) {
 
   // Trecho da rolagem em que cada texto fica à vista. Fora dos tratamentos: do
   // topo a 85% da tela até a base a 15% (perto do topo). Nos tratamentos, que
-  // ficam fixos: do meio do círculo de entrada até a seção ser solta.
+  // ficam fixos: de quando a frase de abertura sai até o palco subir 25% da tela.
   const rangeFor = (element: Element, start: string) =>
     treatments?.contains(element)
       ? {
           trigger: treatments,
-          start: () => `top+=${window.innerHeight * TREATMENTS_REVEAL_AT} top`,
-          end: "bottom 96%",
+          start: () => `top+=${window.innerHeight * TREATMENTS_CONTENT_AT} top`,
+          // O título fica perto do topo do palco: sai quando chega à borda de cima
+          end: "bottom 75%",
         }
       : { trigger: element, start, end: "bottom 15%" };
 

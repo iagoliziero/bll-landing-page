@@ -55,6 +55,8 @@ export const hero = {
 };
 
 export const treatmentsSection = {
+  // Frase que acende palavra por palavra dentro do círculo de entrada da seção
+  statement: "A dor trava a rotina inteira. A gente encontra de onde ela vem e cuida da causa, não só do sintoma, uma sessão de cada vez.",
   title: "Tratamentos",
   text: "A BLL trata a dor e o que está por trás dela, com sessões na sua casa.",
   // Contador da faixa de cards: "1 de 4".

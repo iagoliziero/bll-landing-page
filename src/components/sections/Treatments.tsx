@@ -4,8 +4,10 @@ import { treatments, treatmentsSection } from "@/data/content";
 
 // No mobile, a faixa de cards rola na horizontal de forma nativa, com snap e
 // contador. No tablet e no desktop, os quatro cards ficam à vista em grade (duas
-// e quatro colunas). O efeito treatmentsReveal abre a seção em um círculo e faz
-// os cards entrarem em sequência.
+// e quatro colunas). O efeito treatmentsReveal abre a seção em um círculo, acende
+// a frase de abertura palavra por palavra e depois faz os cards entrarem.
+// A frase só aparece com o efeito ligado (sem JavaScript ou com reduced motion,
+// a seção abre direto nos cards).
 export function Treatments() {
   return (
     <section
@@ -20,6 +22,15 @@ export function Treatments() {
         data-treatments-stage
         className="treatments-stage relative flex min-h-dvh flex-col overflow-hidden bg-fundo"
       >
+        <div
+          data-treatments-speech
+          className="treatments-speech pointer-events-none absolute inset-x-0 top-0 z-2 h-dvh items-center px-page"
+        >
+          <p className="max-w-[22ch] text-[clamp(28px,4vw,60px)] leading-[1.12] font-bold tracking-[-0.03em] text-tinta">
+            {treatmentsSection.statement}
+          </p>
+        </div>
+
         <div className="flex items-start justify-between gap-6 px-page pt-[clamp(76px,12vh,116px)]">
           <div>
             <h2 id="tratamentos-titulo" className="headline text-section text-tinta">
@@ -33,6 +44,7 @@ export function Treatments() {
           </div>
           <p
             aria-hidden="true"
+            data-treatments-counter
             className="hidden shrink-0 pt-2 text-right text-label text-secundario tabular-nums js:max-sm:block"
           >
             <b data-treatments-count className="font-bold text-tinta">
