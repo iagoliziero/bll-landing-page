@@ -723,6 +723,15 @@
     visibility 0s;
 }
 
+/* Reduced motion: o que sobra de deslocamento vira só fade */
+@media (prefers-reduced-motion: reduce) {
+  .fab,
+  .js .pain-panel,
+  .js .pain-panel[data-on] {
+    transform: none;
+  }
+}
+
 /* ---------- Cursor ---------- */
 
 .cursor-ring,

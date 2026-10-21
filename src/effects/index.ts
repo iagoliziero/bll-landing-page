@@ -5,6 +5,7 @@ import { initActions } from "./actions";
 import { initCardSpotlight } from "./cardSpotlight";
 import { initContactReveal } from "./circleReveal";
 import { initCursor } from "./cursor";
+import { initElasticHeadings } from "./elasticHeadings";
 import { initFab } from "./fab";
 import { initHeroParallax } from "./heroParallax";
 import { initHorizontalTrack } from "./horizontalTrack";
@@ -55,6 +56,7 @@ export function initEffects(): Cleanup {
         initPostureWipe(),
         initContactReveal(env),
         initSplitChars(env),
+        initElasticHeadings(env),
         initCursor(env),
         initMagnetic(env),
       ];
