@@ -51,7 +51,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
-      <body>{children}</body>
+      {/* Extensões do navegador (ColorZilla, Grammarly...) põem atributos no
+          <body> antes de o React carregar. Isso só silencia os atributos do
+          próprio <body>; o conteúdo continua sendo conferido. */}
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }
