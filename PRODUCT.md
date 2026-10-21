@@ -44,11 +44,11 @@ A BLL vai até a casa do paciente: a avaliação acontece na primeira visita, as
 - Luis Fernando é o fisioterapeuta responsável. Aparece só como credencial: no selo "Fisioterapeuta com CREFITO [número]" e como responsável técnico no rodapé.
 - Tom direto, acolhedor e claro, falando com "você". Frases curtas e verbos de ação nos botões.
 - Sem promessas de cura ou de resultado. Objetivos são escritos como objetivos.
-- O protótipo aprovado pelo cliente (`referencia/index.html`) é a referência visual: logo (SVG sem alteração), cores, Figtree, ritmo de rolagem e efeitos.
+- O protótipo aprovado pelo cliente foi a referência visual: logo (SVG sem alteração), cores, Figtree, ritmo de rolagem e efeitos. Ele foi removido depois de implementado; hoje a referência é o próprio site e o DESIGN.md.
 
 ## Evidence on Hand
 
-- Protótipo aprovado: `referencia/index.html`. Especificação: `referencia/prompt.md`.
+- Protótipo aprovado: removido do repositório (continua no histórico do git, até o commit a2ca13d). Especificação: `referencia/prompt.md`.
 - Fotos de banco de imagens (Pexels), não do atendimento real da BLL. A foto do hero será trocada por uma do Luis atendendo.
 - Não existem depoimentos, número de pacientes atendidos, avaliações, prêmios ou estudos. Nenhum deles pode ser inventado.
 - Depoimentos e fotos de pacientes só entram com autorização por escrito e depois de conferir as regras de publicidade do COFFITO/CREFITO.

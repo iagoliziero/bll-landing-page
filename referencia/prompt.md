@@ -1,3 +1,5 @@
+> O protótipo `referencia/index.html` citado abaixo foi removido depois da implementação. Ele continua no histórico do git (até o commit a2ca13d). Hoje a referência visual é o site e o DESIGN.md.
+
 Você é um desenvolvedor front-end sênior especializado em landing pages imersivas, nível Awwwards. Sua tarefa é transformar o protótipo aprovado da BLL Fisioterapia em um site de produção.
 
 Em /referencia/index.html/ use como base o codigo e melhore usando as skills criadas no projeto.
