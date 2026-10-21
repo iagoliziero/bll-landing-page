@@ -77,7 +77,7 @@ export function ContactForm() {
 
   const labelClass = "mb-1 block text-caption text-white/72";
   const inputClass =
-    "block w-full border-b border-white/35 bg-transparent py-2.5 pr-6 text-intro text-white caret-verde-vivo outline-none transition-[border-color,box-shadow] duration-300 placeholder:text-white/45 focus:border-verde-vivo focus:shadow-[0_1px_0_var(--color-verde-vivo)] aria-invalid:border-erro";
+    "block w-full border-b border-white/35 bg-transparent py-2.5 pr-6 text-intro text-white caret-verde-vivo outline-none transition-[border-color,box-shadow] duration-300 placeholder:text-menta/80 focus:border-verde-vivo focus:shadow-[0_1px_0_var(--color-verde-vivo)] aria-invalid:border-erro";
 
   return (
     <>

@@ -132,7 +132,7 @@ export function PainMap() {
                 <p className="max-w-110 text-lead text-white/88">{region.description}</p>
                 <p className="my-3.5 text-label text-white">
                   {painMapSection.treatmentLabel}{" "}
-                  <b className="font-bold text-verde-vivo">{treatmentName(region.treatment)}</b>
+                  <b className="font-bold text-verde-vivo-claro">{treatmentName(region.treatment)}</b>
                 </p>
                 <a
                   href="#contato"

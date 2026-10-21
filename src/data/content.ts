@@ -17,6 +17,7 @@ export const meta = {
 };
 
 export const nav = {
+  skipLink: "Pular para o conteúdo",
   brandLabel: "BLL Fisioterapia, voltar ao início",
   brandName: "Fisioterapia",
   links: [

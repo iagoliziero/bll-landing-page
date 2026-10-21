@@ -79,6 +79,19 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Sem palavras sozinhas na última linha, e títulos com linhas equilibradas */
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
   /* Seções recebem o foco ao chegar pela navegação, sem anel visível */
   section[tabindex="-1"]:focus {
     outline: none;
@@ -251,7 +264,7 @@
 }
 
 .pain-scan-label {
-  fill: var(--color-verde-vivo);
+  fill: var(--color-verde-vivo-claro);
   font-size: 12px;
   font-weight: 700;
 }
