@@ -9,16 +9,22 @@ const READ_TO = "#10241f";
 // Nos tratamentos, o título sobe quando o círculo de entrada (1,1 tela) chega
 // perto da metade, para a subida acontecer à vista.
 const TREATMENTS_REVEAL_AT = 1.1 * 0.45;
+// Linhas escondidas abaixo (105) ou acima (-105) da máscara
+const BELOW = 105;
+const ABOVE = -105;
 
 type Cleanup = () => void;
+type LineOptions = { linesClass: string; start: string; delay: number; stagger: number };
 
 // Efeitos nos textos ao rolar:
 // - títulos das seções (data-elastic) sobem linha por linha de trás de uma máscara,
 //   a mesma linguagem do título do hero;
 // - introduções (data-reveal-lines) entram linha por linha logo depois;
+// - os dois saem pelo lado em que deixam a tela (por cima ao descer, por baixo
+//   ao subir) e entram de novo quando a seção volta;
 // - o texto da postura (data-reveal-read) escurece palavra por palavra conforme
 //   a rolagem, como uma leitura guiada, sempre entre duas cores com contraste AA;
-// - os ângulos (data-count) contam de 0 até o valor.
+// - os ângulos (data-count) contam de 0 até o valor, toda vez que entram.
 // Com reduced motion, nada disso roda e o texto aparece pronto.
 export function initTextReveal(env: Env) {
   if (env.reducedMotion) return () => {};
@@ -27,15 +33,21 @@ export function initTextReveal(env: Env) {
   const cleanups: Cleanup[] = [];
   const treatments = document.querySelector<HTMLElement>("[data-treatments]");
 
-  // Onde cada texto começa a entrar: na própria posição, ou, dentro dos
-  // tratamentos (fixos), pela rolagem do círculo de entrada.
-  const triggerFor = (element: Element, start: string) =>
+  // Trecho da rolagem em que cada texto fica à vista. Fora dos tratamentos: do
+  // topo a 85% da tela até a base a 15% (perto do topo). Nos tratamentos, que
+  // ficam fixos: do meio do círculo de entrada até a seção ser solta.
+  const rangeFor = (element: Element, start: string) =>
     treatments?.contains(element)
-      ? { trigger: treatments, start: () => `top+=${window.innerHeight * TREATMENTS_REVEAL_AT} top`, once: true }
-      : { trigger: element, start, once: true };
+      ? {
+          trigger: treatments,
+          start: () => `top+=${window.innerHeight * TREATMENTS_REVEAL_AT} top`,
+          end: "bottom 96%",
+        }
+      : { trigger: element, start, end: "bottom 15%" };
 
-  const reveal = (selector: string, options: { linesClass: string; start: string; delay: number; stagger: number }) => {
+  const revealLines = (selector: string, options: LineOptions) => {
     document.querySelectorAll<HTMLElement>(selector).forEach((element) => {
+      let trigger: ScrollTrigger | undefined;
       const split = SplitText.create(element, {
         type: "lines",
         mask: "lines",
@@ -43,26 +55,57 @@ export function initTextReveal(env: Env) {
         tag: "span",
         aria: "none",
         autoSplit: true,
-        onSplit: (self) =>
-          gsap.from(self.lines, {
-            yPercent: 105,
-            duration: 1,
-            delay: options.delay,
-            stagger: options.stagger,
-            ease: "expo.out",
+        // Roda na primeira divisão e de novo quando a largura muda (as linhas
+        // são outras). As linhas novas continuam de onde as antigas estavam.
+        onSplit: (self) => {
+          const previous = trigger;
+          trigger?.kill();
+          const lines = self.lines;
+          const show = () =>
+            gsap.to(lines, {
+              yPercent: 0,
+              duration: 1,
+              delay: options.delay,
+              stagger: options.stagger,
+              ease: "expo.out",
+              overwrite: true,
+            });
+          const hide = (yPercent: number) =>
+            gsap.to(lines, { yPercent, duration: 0.55, stagger: options.stagger / 2, ease: "power3.in", overwrite: true });
+
+          trigger = ScrollTrigger.create({
             // data-reveal-start troca o ponto de partida (ex.: o contato, que
             // espera o círculo do painel descobrir o texto)
-            scrollTrigger: triggerFor(element, element.dataset.revealStart ?? options.start),
-          }),
+            ...rangeFor(element, element.dataset.revealStart ?? options.start),
+            onEnter: show,
+            onEnterBack: show,
+            onLeave: () => hide(ABOVE),
+            onLeaveBack: () => hide(BELOW),
+          });
+
+          // Estado de partida: à vista (sobe agora, ou já pronto se é uma
+          // redivisão), já passou (acima) ou ainda não chegou (abaixo)
+          if (trigger.isActive) {
+            if (previous) gsap.set(lines, { yPercent: 0, overwrite: true });
+            else {
+              gsap.set(lines, { yPercent: BELOW });
+              show();
+            }
+          } else gsap.set(lines, { yPercent: trigger.progress === 1 ? ABOVE : BELOW, overwrite: true });
+        },
       });
-      cleanups.push(() => split.revert());
+      cleanups.push(() => {
+        trigger?.kill();
+        split.revert();
+      });
     });
   };
 
-  reveal("[data-elastic]", { linesClass: "reveal-title-line", start: "top 85%", delay: 0, stagger: 0.08 });
-  reveal("[data-reveal-lines]", { linesClass: "reveal-text-line", start: "top 88%", delay: 0.15, stagger: 0.06 });
+  revealLines("[data-elastic]", { linesClass: "reveal-title-line", start: "top 85%", delay: 0, stagger: 0.08 });
+  revealLines("[data-reveal-lines]", { linesClass: "reveal-text-line", start: "top 88%", delay: 0.15, stagger: 0.06 });
 
-  // Leitura guiada do texto da postura
+  // Leitura guiada do texto da postura. O scrub de 0,5s faz as palavras
+  // alcançarem a rolagem com suavidade, em vez de saltar junto com ela.
   document.querySelectorAll<HTMLElement>("[data-reveal-read]").forEach((element) => {
     const split = SplitText.create(element, {
       type: "words",
@@ -77,31 +120,55 @@ export function initTextReveal(env: Env) {
             color: READ_TO,
             ease: "none",
             stagger: 0.1,
-            scrollTrigger: { trigger: element, start: "top 80%", end: "bottom 45%", scrub: true },
+            scrollTrigger: { trigger: element, start: "top 80%", end: "bottom 45%", scrub: 0.5 },
           },
         ),
     });
     cleanups.push(() => split.revert());
   });
 
-  // Números que contam até o valor (ex.: "42°")
+  // Números que contam até o valor (ex.: "42°") toda vez que entram na tela
   document.querySelectorAll<HTMLElement>("[data-count]").forEach((element) => {
     const final = element.textContent ?? "";
     const target = parseInt(final, 10);
     const suffix = final.replace(/^\d+/, "");
     if (Number.isNaN(target)) return;
     const counter = { value: 0 };
-    const tween = gsap.to(counter, {
-      value: target,
-      duration: 1.4,
-      ease: "expo.out",
-      onUpdate: () => (element.textContent = `${Math.round(counter.value)}${suffix}`),
-      scrollTrigger: { trigger: element, start: "top 85%", once: true },
+    let counted = false;
+    const write = () => (element.textContent = `${Math.round(counter.value)}${suffix}`);
+    const run = () => {
+      if (counted) return;
+      counted = true;
+      gsap.to(counter, { value: target, duration: 1.4, ease: "expo.out", onUpdate: write, overwrite: true });
+    };
+    // Zera só depois que o número sai da tela por inteiro, para ninguém vê-lo
+    // voltar a 0
+    const reset = () => {
+      gsap.killTweensOf(counter);
+      counted = false;
+      counter.value = 0;
+      write();
+    };
+    const count = ScrollTrigger.create({
+      trigger: element,
+      start: "top 85%",
+      end: "bottom top",
+      onEnter: run,
+      onEnterBack: run,
     });
-    element.textContent = `0${suffix}`;
+    const offscreen = ScrollTrigger.create({
+      trigger: element,
+      start: "top bottom",
+      end: "bottom top",
+      onLeave: reset,
+      onLeaveBack: reset,
+    });
+    if (count.isActive) run();
+    else write();
     cleanups.push(() => {
-      tween.scrollTrigger?.kill();
-      tween.kill();
+      count.kill();
+      offscreen.kill();
+      gsap.killTweensOf(counter);
       element.textContent = final;
     });
   });

@@ -4,7 +4,8 @@ import { treatments, treatmentsSection } from "@/data/content";
 
 // Sem JavaScript, no mobile e com reduced motion, a faixa de cards rola na
 // horizontal de forma nativa. No desktop, o efeito horizontalTrack fixa a seção
-// (depois do círculo de entrada) e move a faixa conforme a rolagem.
+// (depois do círculo de entrada) e move a faixa conforme a rolagem, como um
+// carrossel 3D com o card ativo no centro.
 export function Treatments() {
   return (
     <section
@@ -54,13 +55,13 @@ export function Treatments() {
         >
           <ul
             data-treatments-track
-            className="treatments-track flex shrink-0 gap-4.5 px-page"
+            className="treatments-track relative flex shrink-0 gap-4.5 px-page"
           >
             {treatments.map((treatment) => (
               <li
                 key={treatment.id}
                 data-treatments-card
-                className="treatment-card relative flex w-[78vw] shrink-0 snap-start scroll-mx-[clamp(20px,4vw,64px)] flex-col overflow-hidden rounded-card border border-linha bg-white transition-colors duration-300 hover:border-verde-vivo sm:w-[clamp(262px,min(32vw,52vh),400px)]"
+                className="treatment-card relative flex w-[78vw] shrink-0 snap-start scroll-mx-[clamp(20px,4vw,64px)] flex-col overflow-hidden rounded-card border border-linha bg-white transition-colors duration-300 hover:border-verde-vivo sm:w-(--card-w)"
               >
                 <div className="treatment-photo relative aspect-[16/10] overflow-hidden bg-menta">
                   <Image

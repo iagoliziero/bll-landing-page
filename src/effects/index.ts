@@ -25,6 +25,9 @@ type Cleanup = () => void;
 // (mobile ↔ desktop), o tipo de ponteiro ou a preferência de movimento.
 export function initEffects(): Cleanup {
   gsap.registerPlugin(ScrollTrigger);
+  // No celular, a barra de endereço some e volta na rolagem e muda a altura da
+  // tela. Sem isto, cada mudança recalcularia todos os gatilhos no meio da rolagem.
+  ScrollTrigger.config({ ignoreMobileResize: true });
   const mm = gsap.matchMedia();
 
   mm.add(
@@ -53,7 +56,7 @@ export function initEffects(): Cleanup {
         initHorizontalTrack(env),
         initCardSpotlight(env),
         initPainMap(env),
-        initTimeline(),
+        initTimeline(env),
         initPostureWipe(),
         initContactReveal(env),
         initSplitChars(env),

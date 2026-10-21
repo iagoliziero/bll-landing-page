@@ -233,12 +233,27 @@
   scroll-snap-type: none;
 }
 
+/* Largura dos cards no desktop: também define o recuo que centraliza o
+   primeiro card no começo e o último no fim da faixa */
+.treatments-track {
+  --card-w: clamp(262px, min(32vw, 52vh), 400px);
+}
+
 [data-pinned] .treatments-track {
+  padding-inline: calc(50% - var(--card-w) / 2);
   transform-style: preserve-3d;
   will-change: transform;
 }
 
+/* Num contexto 3D, a parte de um card que gira ou recua para trás da faixa fica
+   atrás do plano dela, e o mouse ali contaria como estando sobre a faixa. A
+   faixa ignora o mouse; só os cards o recebem. */
+[data-pinned] .treatments-track {
+  pointer-events: none;
+}
+
 [data-pinned] .treatment-card {
+  pointer-events: auto;
   will-change: transform;
 }
 
@@ -252,7 +267,7 @@
   opacity: 1;
 }
 
-/* Holofote verde que segue o cursor (--mx/--my vêm do efeito cardSpotlight) */
+/* Holofote verde que segue o cursor (--mx/--my, em px, vêm do efeito cardSpotlight) */
 .treatment-card::after {
   content: "";
   position: absolute;
@@ -272,10 +287,26 @@
   opacity: 1;
 }
 
-/* A foto se move por dentro do card (--ix/--iy vêm do efeito cardSpotlight) */
-.treatment-photo img {
-  transform: scale(1.12) translate3d(var(--ix, 0px), var(--iy, 0px), 0);
-  transition: transform 0.5s var(--ease-out-soft);
+/* Brilho branco na foto, no mesmo ponto do holofote */
+.treatment-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgb(255 255 255 / 0.45), transparent 70%);
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.treatment-card:hover .treatment-photo::after {
+  opacity: 1;
+}
+
+/* A foto corre por dentro do card e acompanha a inclinação (efeito
+   horizontalTrack, que escreve o transform a cada quadro) */
+.js .treatment-photo img {
+  will-change: transform;
 }
 
 /* ---------- Onde dói? ---------- */
@@ -432,9 +463,11 @@
   transform-origin: 0 50%;
 }
 
+/* --stop: posição do ponto na linha (% no HTML; px no mobile, medida pelo efeito) */
 .timeline-stop {
   position: absolute;
   top: 50%;
+  left: var(--stop);
   width: 16px;
   height: 16px;
   margin: -8px 0 0 -8px;
@@ -473,6 +506,36 @@
 
 .js .timeline-runner {
   left: 0;
+}
+
+/* Mobile: a linha fica na vertical, ao lado das etapas em coluna, e se
+   preenche de cima para baixo */
+@media (width < 40rem) {
+  .timeline-fill {
+    transform-origin: 50% 0;
+  }
+
+  .timeline-stop {
+    top: var(--stop);
+    left: 50%;
+  }
+
+  .timeline-runner,
+  .js .timeline-runner {
+    left: 50%;
+  }
+
+  .timeline-runner {
+    top: 100%;
+  }
+
+  .js .timeline-runner {
+    top: 0;
+  }
+
+  .js .timeline-fill {
+    transform: scaleY(0);
+  }
 }
 
 /* Etapas que a linha ainda não alcançou: número em cinza e título em texto

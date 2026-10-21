@@ -156,19 +156,19 @@ Uma família de verdes com um único acento vivo e um vermelho reservado à dor.
 
 **A Regra da Linha Equilibrada.** Títulos usam `text-wrap: balance` e parágrafos `text-wrap: pretty`: nenhuma palavra sozinha na última linha.
 
-**A Regra da Máscara.** Texto grande entra subindo de trás de uma máscara, linha por linha: o título do hero, os títulos das seções e, logo depois deles, as introduções. O texto explicativo da postura escurece palavra por palavra com a rolagem, sempre entre duas cores com contraste AA (texto secundário → tinta). Com reduced motion, o texto aparece pronto.
+**A Regra da Máscara.** Texto grande entra subindo de trás de uma máscara, linha por linha: o título do hero, os títulos das seções e, logo depois deles, as introduções. O texto explicativo da postura escurece palavra por palavra com a rolagem, sempre entre duas cores com contraste AA (texto secundário → tinta). Títulos e introduções saem pelo lado em que deixam a tela (por cima ao descer, por baixo ao subir) e entram de novo quando a seção volta; os números da postura contam de novo a cada entrada. Com reduced motion, o texto aparece pronto.
 
 ## Layout
 
 Página de uma coluna, em blocos de seção que ocupam a largura toda. A margem lateral é fluida (clamp(20px, 4vw, 64px)) e se repete em todas as seções. Os blocos de texto têm largura máxima curta: 360px nas introduções, 440–470px nos parágrafos de destaque. O espaçamento vertical das seções é clamp(90px, 14vh, 140px) em cima e clamp(70px, 10vh, 110px) embaixo.
 
-O hero e o palco dos tratamentos ocupam exatamente uma tela (100dvh). Mapa de dor e postura usam grade de duas colunas no desktop (0,75fr / 1,25fr e 1fr / 1fr) e uma coluna no mobile. As etapas vão de quatro colunas no desktop para duas no mobile, e o formulário de três campos para um.
+O hero e o palco dos tratamentos ocupam exatamente uma tela (100dvh). Mapa de dor e postura usam grade de duas colunas no desktop (0,75fr / 1,25fr e 1fr / 1fr) e uma coluna no mobile. As etapas vão de quatro colunas no desktop, com a linha do tempo na horizontal por cima, para uma coluna no mobile, com a linha na vertical ao lado, e o formulário de três campos para um.
 
-O ponto de quebra único é 640px. Abaixo dele, os tratamentos deixam de correr na horizontal com a rolagem e passam a uma faixa nativa com scroll-snap, cada card com 78vw.
+O ponto de quebra único é 640px. Acima dele, a faixa dos tratamentos corre na horizontal com a rolagem, 1px de faixa para cada 1px de rolagem, com o card ativo no centro. Abaixo, ela passa a uma faixa nativa com scroll-snap, cada card com 78vw.
 
 ## Elevation & Depth
 
-O sistema é plano, sem sombras. A profundidade vem dos campos de cor que se sobrepõem, das fotos, do overlay verde em degradê sobre a foto do hero e do movimento: a inclinação 3D dos cards (até 16° de rotateY, com translateZ negativo) e os recortes circulares que revelam uma seção por cima da outra.
+O sistema é plano, sem sombras. A profundidade vem dos campos de cor que se sobrepõem, das fotos, do overlay verde em degradê sobre a foto do hero e do movimento: o carrossel 3D dos cards (cada card de distância do centro gira 22° de rotateY e recua 110px; no mobile, 16° e 60px), a inclinação de até 7° na direção do cursor e os recortes circulares que revelam uma seção por cima da outra.
 
 ### Named Rules
 **A Regra Sem Sombra.** Nenhum elemento tem sombra. Para separar, use cor de fundo ou borda de 1px na cor linha, nunca as duas coisas com sombra junto.
@@ -197,8 +197,8 @@ Cantos suaves e consistentes por função: botões com 12px, caixas de mensagem 
 - **Corner Style:** 16px.
 - **Background:** branco, sobre o fundo claro do palco.
 - **Shadow Strategy:** nenhuma (ver Elevation & Depth).
-- **Border:** 1px na cor linha, verde vivo no hover, com um holofote verde radial que segue o cursor.
-- **Internal Padding:** 16px em cima, 18px nas laterais e embaixo. A foto fica em 16:10 no topo e se move de leve por dentro do card.
+- **Border:** 1px na cor linha, verde vivo no hover, com um holofote verde radial que segue o cursor e um brilho branco suave sobre a foto.
+- **Internal Padding:** 16px em cima, 18px nas laterais e embaixo. A foto fica em 16:10 no topo e corre por dentro do card, ao contrário do movimento da faixa e da inclinação.
 
 ### Inputs / Fields
 - **Style:** só sublinhado, 1px em branco a 35%, sobre o verde. Texto em 16px branco, placeholder em menta a 80%.
