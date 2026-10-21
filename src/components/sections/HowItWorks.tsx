@@ -27,7 +27,7 @@ export function HowItWorks() {
       <div
         data-timeline
         aria-hidden="true"
-        className="timeline relative mt-[clamp(36px,7vh,64px)] h-[3px] rounded-xs bg-linha"
+        className="timeline relative mt-[clamp(36px,7vh,64px)] h-0.75 rounded-xs bg-linha"
       >
         <i data-timeline-fill className="timeline-fill" />
         {stops.map((stop) => (
@@ -36,7 +36,7 @@ export function HowItWorks() {
         <em data-timeline-runner className="timeline-runner" />
       </div>
 
-      <ol className="mt-[26px] grid grid-cols-2 gap-[18px] sm:grid-cols-4">
+      <ol className="mt-6.5 grid grid-cols-2 gap-4.5 sm:grid-cols-4">
         {howItWorks.steps.map((step, index) => (
           <li key={step.title} data-timeline-step data-on="" className="timeline-step">
             <span

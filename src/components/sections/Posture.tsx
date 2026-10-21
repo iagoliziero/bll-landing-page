@@ -73,7 +73,7 @@ export function Posture() {
               {posture.title}
             </span>
           </h2>
-          <p className="mt-3.5 max-w-[360px] text-lead text-secundario">{posture.text}</p>
+          <p className="mt-3.5 max-w-90 text-lead text-secundario">{posture.text}</p>
           <dl className="mt-6 flex gap-7">
             <div>
               <dt className="text-caption text-secundario">{posture.before}</dt>

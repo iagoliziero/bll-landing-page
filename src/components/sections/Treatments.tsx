@@ -26,7 +26,7 @@ export function Treatments() {
                 {treatmentsSection.title}
               </span>
             </h2>
-            <p className="mt-2 max-w-[360px] text-body text-secundario">{treatmentsSection.text}</p>
+            <p className="mt-2 max-w-90 text-body text-secundario">{treatmentsSection.text}</p>
           </div>
           <p
             aria-hidden="true"
@@ -36,7 +36,7 @@ export function Treatments() {
               1
             </b>{" "}
             {treatmentsSection.counterSeparator} {treatments.length}
-            <span className="mt-2 block h-[3px] w-[110px] overflow-hidden rounded-xs bg-linha">
+            <span className="mt-2 block h-0.75 w-27.5 overflow-hidden rounded-xs bg-linha">
               <span
                 data-treatments-progress
                 className="block h-full origin-left bg-verde"
@@ -48,11 +48,11 @@ export function Treatments() {
 
         <div
           data-treatments-viewport
-          className="treatments-viewport mt-auto flex snap-x snap-mandatory overflow-x-auto pt-8 pb-[30px]"
+          className="treatments-viewport mt-auto flex snap-x snap-mandatory overflow-x-auto pt-8 pb-7.5"
         >
           <ul
             data-treatments-track
-            className="treatments-track flex shrink-0 gap-[18px] px-page"
+            className="treatments-track flex shrink-0 gap-4.5 px-page"
           >
             {treatments.map((treatment) => (
               <li
@@ -69,7 +69,7 @@ export function Treatments() {
                     className="object-cover"
                   />
                 </div>
-                <div className="relative z-[1] flex flex-1 flex-col px-[18px] pt-4 pb-[18px]">
+                <div className="relative z-1 flex flex-1 flex-col px-4.5 pt-4 pb-4.5">
                   <h3 className="mb-2 text-card-heading font-extrabold tracking-[-0.03em] text-tinta">
                     {treatment.name}
                   </h3>

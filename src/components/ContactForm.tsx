@@ -86,7 +86,7 @@ export function ContactForm() {
         data-contact-form
         noValidate
         onSubmit={handleSubmit}
-        className="grid max-w-[860px] grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3"
+        className="grid max-w-215 grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-3"
       >
         <label className="relative block">
           <span className={labelClass}>{contact.fields.name.label}</span>
@@ -141,10 +141,10 @@ export function ContactForm() {
           </WhatsAppLink>
         </div>
       </form>
-      <p id="contato-erro" role="alert" className="mt-2.5 min-h-[18px] text-label text-erro">
+      <p id="contato-erro" role="alert" className="mt-2.5 min-h-4.5 text-label text-erro">
         {error?.message}
       </p>
-      <div role="status" className="mt-2.5 max-w-[560px]">
+      <div role="status" className="mt-2.5 max-w-140">
         {notice && (
           <p className="rounded-panel border border-white/25 px-4 py-3.5 text-body text-white/92">
             {notice}

@@ -18,11 +18,11 @@ export function Navbar() {
         aria-label={nav.brandLabel}
         className="flex min-h-11 items-center gap-2.5 rounded-md text-verde transition-colors duration-400 group-data-[theme=dark]:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
       >
-        <Logo className="h-[22px] w-auto" />
+        <Logo className="h-5.5 w-auto" />
         <span className="hidden text-label font-bold tracking-[-0.01em] sm:inline">{nav.brandName}</span>
       </a>
       <nav aria-label="Seções" className="hidden sm:block">
-        <ul className="flex gap-[18px]">
+        <ul className="flex gap-4.5">
           {nav.links.map((link) => (
             <li key={link.href}>
               <a

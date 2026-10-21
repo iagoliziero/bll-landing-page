@@ -49,7 +49,7 @@ export function PainMap() {
       </div>
 
       <div className="mt-6 grid grid-cols-1 items-center gap-[clamp(24px,5vw,80px)] sm:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">
-        <div className="mx-auto w-full max-w-[140px] sm:max-w-[190px]">
+        <div className="mx-auto w-full max-w-35 sm:max-w-47.5">
           <svg viewBox="0 0 200 430" aria-hidden="true" className="pain-figure block h-auto w-full overflow-visible">
             <defs>
               <radialGradient id="dor-halo">
@@ -120,7 +120,7 @@ export function PainMap() {
             ))}
           </div>
           <p data-pain-live aria-live="polite" className="sr-only" />
-          <div className="pain-panels mt-[22px] flex flex-col gap-10">
+          <div className="pain-panels mt-5.5 flex flex-col gap-10">
             {painRegions.map((region) => (
               <div
                 key={region.id}
@@ -129,7 +129,7 @@ export function PainMap() {
                 className="pain-panel"
               >
                 <h3 className="headline mb-2 text-panel">{region.title}</h3>
-                <p className="max-w-[440px] text-lead text-white/88">{region.description}</p>
+                <p className="max-w-110 text-lead text-white/88">{region.description}</p>
                 <p className="my-3.5 text-label text-white">
                   {painMapSection.treatmentLabel}{" "}
                   <b className="font-bold text-verde-vivo">{treatmentName(region.treatment)}</b>

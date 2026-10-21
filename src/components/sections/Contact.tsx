@@ -46,7 +46,7 @@ export function Contact() {
           <span className="sr-only">{contact.title}</span>
           <SplitTitle text={contact.title} />
         </h2>
-        <p className="mt-6 mb-7 max-w-[460px] text-intro text-white/85">{contact.text}</p>
+        <p className="mt-6 mb-7 max-w-115 text-intro text-white/85">{contact.text}</p>
         <ContactForm />
       </div>
     </section>
@@ -61,7 +61,7 @@ export function Footer() {
 
   return (
     <footer data-nav-theme="dark" className="bg-verde px-page text-white">
-      <div className="grid grid-cols-2 gap-[18px] border-t border-white/20 pt-[22px] pb-[34px] text-label sm:grid-cols-3">
+      <div className="grid grid-cols-2 gap-4.5 border-t border-white/20 pt-5.5 pb-8.5 text-label sm:grid-cols-3">
         <div>
           <b className="mb-1.5 block font-bold">{footer.service.title}</b>
           {footer.service.lines.map((line) => (
