@@ -1,0 +1,355 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-21T00:33:59.199Z",
+  "title": "Design System: BLL Fisioterapia",
+  "extensions": {
+    "colorMeta": {
+      "verde": {
+        "role": "primary",
+        "displayName": "Verde BLL",
+        "canonical": "oklch(42.8% 0.079 172.9)",
+        "tonalRamp": [
+          "oklch(15% 0.079 173)",
+          "oklch(26% 0.079 173)",
+          "oklch(38% 0.079 173)",
+          "oklch(49% 0.079 173)",
+          "oklch(61% 0.079 173)",
+          "oklch(72% 0.079 173)",
+          "oklch(84% 0.079 173)",
+          "oklch(95% 0.037 173)"
+        ]
+      },
+      "verde-escuro": {
+        "role": "secondary",
+        "displayName": "Verde escuro",
+        "canonical": "oklch(35.7% 0.064 174.4)",
+        "tonalRamp": [
+          "oklch(15% 0.064 174)",
+          "oklch(26% 0.064 174)",
+          "oklch(38% 0.064 174)",
+          "oklch(49% 0.064 174)",
+          "oklch(61% 0.064 174)",
+          "oklch(72% 0.064 174)",
+          "oklch(84% 0.064 174)",
+          "oklch(95% 0.037 174)"
+        ]
+      },
+      "verde-vivo": {
+        "role": "primary",
+        "displayName": "Verde vivo",
+        "canonical": "oklch(76.9% 0.179 154.7)",
+        "tonalRamp": [
+          "oklch(15% 0.111 155)",
+          "oklch(26% 0.179 155)",
+          "oklch(38% 0.179 155)",
+          "oklch(49% 0.179 155)",
+          "oklch(61% 0.179 155)",
+          "oklch(72% 0.179 155)",
+          "oklch(84% 0.122 155)",
+          "oklch(95% 0.037 155)"
+        ]
+      },
+      "verde-vivo-claro": {
+        "role": "secondary",
+        "displayName": "Verde vivo claro",
+        "canonical": "oklch(82.3% 0.158 156.9)",
+        "tonalRamp": [
+          "oklch(15% 0.111 157)",
+          "oklch(26% 0.158 157)",
+          "oklch(38% 0.158 157)",
+          "oklch(49% 0.158 157)",
+          "oklch(61% 0.158 157)",
+          "oklch(72% 0.158 157)",
+          "oklch(84% 0.122 157)",
+          "oklch(95% 0.037 157)"
+        ]
+      },
+      "menta": {
+        "role": "secondary",
+        "displayName": "Menta",
+        "canonical": "oklch(94.5% 0.026 169.3)",
+        "tonalRamp": [
+          "oklch(15% 0.026 169)",
+          "oklch(26% 0.026 169)",
+          "oklch(38% 0.026 169)",
+          "oklch(49% 0.026 169)",
+          "oklch(61% 0.026 169)",
+          "oklch(72% 0.026 169)",
+          "oklch(84% 0.026 169)",
+          "oklch(95% 0.026 169)"
+        ]
+      },
+      "fundo": {
+        "role": "neutral",
+        "displayName": "Fundo claro",
+        "canonical": "oklch(97.6% 0.005 165.0)",
+        "tonalRamp": [
+          "oklch(15% 0.005 165)",
+          "oklch(26% 0.005 165)",
+          "oklch(38% 0.005 165)",
+          "oklch(49% 0.005 165)",
+          "oklch(61% 0.005 165)",
+          "oklch(72% 0.005 165)",
+          "oklch(84% 0.005 165)",
+          "oklch(95% 0.005 165)"
+        ]
+      },
+      "tinta": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "oklch(24.1% 0.028 175.9)",
+        "tonalRamp": [
+          "oklch(15% 0.028 176)",
+          "oklch(26% 0.028 176)",
+          "oklch(38% 0.028 176)",
+          "oklch(49% 0.028 176)",
+          "oklch(61% 0.028 176)",
+          "oklch(72% 0.028 176)",
+          "oklch(84% 0.028 176)",
+          "oklch(95% 0.028 176)"
+        ]
+      },
+      "secundario": {
+        "role": "neutral",
+        "displayName": "Texto secundário",
+        "canonical": "oklch(46.1% 0.025 177.4)",
+        "tonalRamp": [
+          "oklch(15% 0.025 177)",
+          "oklch(26% 0.025 177)",
+          "oklch(38% 0.025 177)",
+          "oklch(49% 0.025 177)",
+          "oklch(61% 0.025 177)",
+          "oklch(72% 0.025 177)",
+          "oklch(84% 0.025 177)",
+          "oklch(95% 0.025 177)"
+        ]
+      },
+      "cinza": {
+        "role": "neutral",
+        "displayName": "Cinza",
+        "canonical": "oklch(63.4% 0.022 177.0)",
+        "tonalRamp": [
+          "oklch(15% 0.022 177)",
+          "oklch(26% 0.022 177)",
+          "oklch(38% 0.022 177)",
+          "oklch(49% 0.022 177)",
+          "oklch(61% 0.022 177)",
+          "oklch(72% 0.022 177)",
+          "oklch(84% 0.022 177)",
+          "oklch(95% 0.022 177)"
+        ]
+      },
+      "linha": {
+        "role": "neutral",
+        "displayName": "Linha",
+        "canonical": "oklch(91.6% 0.012 170.2)",
+        "tonalRamp": [
+          "oklch(15% 0.012 170)",
+          "oklch(26% 0.012 170)",
+          "oklch(38% 0.012 170)",
+          "oklch(49% 0.012 170)",
+          "oklch(61% 0.012 170)",
+          "oklch(72% 0.012 170)",
+          "oklch(84% 0.012 170)",
+          "oklch(95% 0.012 170)"
+        ]
+      },
+      "dor": {
+        "role": "tertiary",
+        "displayName": "Vermelho de dor",
+        "canonical": "oklch(70.9% 0.184 28.7)",
+        "tonalRamp": [
+          "oklch(15% 0.111 29)",
+          "oklch(26% 0.184 29)",
+          "oklch(38% 0.184 29)",
+          "oklch(49% 0.184 29)",
+          "oklch(61% 0.184 29)",
+          "oklch(72% 0.184 29)",
+          "oklch(84% 0.122 29)",
+          "oklch(95% 0.037 29)"
+        ]
+      },
+      "erro": {
+        "role": "neutral",
+        "displayName": "Erro",
+        "canonical": "oklch(89.8% 0.053 18.2)",
+        "tonalRamp": [
+          "oklch(15% 0.053 18)",
+          "oklch(26% 0.053 18)",
+          "oklch(38% 0.053 18)",
+          "oklch(49% 0.053 18)",
+          "oklch(61% 0.053 18)",
+          "oklch(72% 0.053 18)",
+          "oklch(84% 0.053 18)",
+          "oklch(95% 0.037 18)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Título do hero e do contato."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Título de cada seção."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Nome dos tratamentos nos cards; painéis e etapas em escalas próximas."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Textos dos cards, etapas e introduções de seção."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Navbar, botões menores, chips, contador e rodapé."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out-soft",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Entradas e respostas a ações: linhas do título, cards, painéis."
+      },
+      {
+        "name": "ease-reveal",
+        "value": "cubic-bezier(0.77, 0, 0.18, 1)",
+        "purpose": "Círculo que revela a foto do hero (1,6s)."
+      },
+      {
+        "name": "ease-draw",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Traços que se desenham: logo e risco em \"dor\"."
+      },
+      {
+        "name": "ease-spring",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "purpose": "Overshoot pedido no briefing: cabeça da logo e pontos da linha do tempo."
+      },
+      {
+        "name": "spring-elastic",
+        "value": "stiffness 170, damping 13",
+        "purpose": "Mola dos títulos elásticos, até 12% na vertical."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão de ação",
+      "kind": "button",
+      "refersTo": "button-accent",
+      "description": "CTA do WhatsApp e de agendamento, sempre verde vivo com texto em tinta.",
+      "html": "<button class=\"ds-btn-accent\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21\"/><path d=\"M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1\"/></svg>Agendar avaliação pelo WhatsApp</button>",
+      "css": ".ds-btn-accent{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:14px 22px;border:1px solid transparent;border-radius:12px;background:var(--color-verde-vivo,#2fd47f);color:var(--color-tinta,#10241f);font:700 15px/1.2 Figtree,system-ui,sans-serif;cursor:pointer;transition:background-color .3s}.ds-btn-accent:hover{background:var(--color-verde-vivo-claro,#5be39b)}.ds-btn-accent:focus-visible{outline:2px solid var(--color-verde-vivo,#2fd47f);outline-offset:3px}"
+    },
+    {
+      "name": "Botão fantasma",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Ação secundária ao lado do CTA, sobre o verde.",
+      "html": "<div class=\"ds-on-green\"><button class=\"ds-btn-ghost\">Ver tratamentos</button></div>",
+      "css": ".ds-on-green{background:var(--color-verde,#0b5d4b);padding:24px}.ds-btn-ghost{display:inline-flex;align-items:center;min-height:44px;padding:14px 22px;border:1px solid rgb(255 255 255/.45);border-radius:12px;background:transparent;color:#fff;font:700 15px/1.2 Figtree,system-ui,sans-serif;cursor:pointer;transition:border-color .3s}.ds-btn-ghost:hover{border-color:#fff}.ds-btn-ghost:focus-visible{outline:2px solid var(--color-verde-vivo,#2fd47f);outline-offset:3px}"
+    },
+    {
+      "name": "Chip de região",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Atalho do hero para uma região do mapa de dor.",
+      "html": "<a class=\"ds-chip\" href=\"#onde-doi\">Pescoço</a>",
+      "css": ".ds-chip{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--color-menta,#ddf3ea);color:var(--color-verde,#0b5d4b);font:600 13px/1.4 Figtree,system-ui,sans-serif;text-decoration:none;transition:background-color .3s,color .3s}.ds-chip:hover{background:var(--color-verde,#0b5d4b);color:#fff}.ds-chip:focus-visible{outline:2px solid var(--color-verde,#0b5d4b);outline-offset:2px}"
+    },
+    {
+      "name": "Botão de região",
+      "kind": "chip",
+      "refersTo": "region-button-pressed",
+      "description": "Escolha da região no mapa de dor, com estado pressionado.",
+      "html": "<div class=\"ds-on-green\"><button class=\"ds-region\" aria-pressed=\"false\">Ombro</button> <button class=\"ds-region\" aria-pressed=\"true\">Costas</button></div>",
+      "css": ".ds-on-green{background:var(--color-verde,#0b5d4b);padding:24px}.ds-region{min-height:44px;padding:0 16px;border:1px solid rgb(255 255 255/.3);border-radius:999px;background:transparent;color:rgb(255 255 255/.85);font:600 14px/1.5 Figtree,system-ui,sans-serif;cursor:pointer;transition:background-color .3s,color .3s,border-color .3s}.ds-region:hover{border-color:#fff}.ds-region[aria-pressed=true]{border-color:#fff;background:#fff;color:var(--color-verde,#0b5d4b)}.ds-region:focus-visible{outline:2px solid #fff;outline-offset:2px}"
+    },
+    {
+      "name": "Card de tratamento",
+      "kind": "card",
+      "refersTo": "treatment-card",
+      "description": "Card da faixa de tratamentos: foto 16:10, nome, descrição, objetivo e CTA.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-photo\"></div><div class=\"ds-card-body\"><h3>Coluna e lombar</h3><p>Para quem sente dor nas costas que piora depois de um dia inteiro sentado.</p><p class=\"ds-goal\"><b>Objetivo:</b> terminar o dia de trabalho sem as costas pesando.</p></div></article>",
+      "css": ".ds-card{width:320px;overflow:hidden;border:1px solid var(--color-linha,#dce6e2);border-radius:16px;background:#fff;transition:border-color .3s}.ds-card:hover{border-color:var(--color-verde-vivo,#2fd47f)}.ds-card-photo{aspect-ratio:16/10;background:var(--color-menta,#ddf3ea)}.ds-card-body{padding:16px 18px 18px;font-family:Figtree,system-ui,sans-serif}.ds-card h3{margin:0 0 8px;font-size:22px;font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--color-tinta,#10241f)}.ds-card p{margin:0;font-size:14px;line-height:1.5;color:var(--color-secundario,#4a5d58)}.ds-card .ds-goal{margin-top:8px;color:var(--color-tinta,#10241f)}.ds-goal b{color:var(--color-verde,#0b5d4b)}"
+    },
+    {
+      "name": "Campo do formulário",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Campo sublinhado sobre o verde do contato.",
+      "html": "<div class=\"ds-on-green\"><label class=\"ds-field\"><span>Nome</span><input placeholder=\"Maria Souza\"></label></div>",
+      "css": ".ds-on-green{background:var(--color-verde,#0b5d4b);padding:24px}.ds-field{display:block;max-width:280px;font-family:Figtree,system-ui,sans-serif}.ds-field span{display:block;margin-bottom:4px;font-size:12px;color:rgb(255 255 255/.72)}.ds-field input{display:block;width:100%;padding:10px 24px 10px 0;border:0;border-bottom:1px solid rgb(255 255 255/.35);background:transparent;color:#fff;font:400 16px/1.6 Figtree,system-ui,sans-serif;caret-color:var(--color-verde-vivo,#2fd47f);outline:none;transition:border-color .3s,box-shadow .3s}.ds-field input::placeholder{color:rgb(221 243 234/.8)}.ds-field input:focus{border-color:var(--color-verde-vivo,#2fd47f);box-shadow:0 1px 0 var(--color-verde-vivo,#2fd47f)}"
+    },
+    {
+      "name": "Navegação",
+      "kind": "nav",
+      "refersTo": "navbar",
+      "description": "Barra fixa e transparente; texto branco sobre seções escuras e tinta sobre as claras.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-brand\">BLL Fisioterapia</span><a href=\"#\">Tratamentos</a><a href=\"#\">Onde dói?</a><a href=\"#\">Como funciona</a><a href=\"#\">Contato</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:18px;padding:12px 24px;background:var(--color-verde,#0b5d4b);color:#fff;font-family:Figtree,system-ui,sans-serif}.ds-brand{margin-right:auto;font-size:13px;font-weight:700}.ds-nav a{display:flex;align-items:center;min-height:44px;font-size:13px;font-weight:500;color:inherit;text-decoration:none;opacity:.8;transition:opacity .3s}.ds-nav a:hover,.ds-nav a:focus-visible{opacity:1}.ds-nav a:focus-visible{outline:2px solid currentColor;outline-offset:2px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "A visita que alivia",
+    "overview": "O site é a casa que recebe a BLL: um verde fundo e calmo que abre espaço, aos poucos, para fotos claras de atendimento e para uma linha fina que desenha o corpo. Cada seção chega por um gesto de abertura (um círculo que se expande, uma divisória que varre, uma linha que se preenche), como uma porta que se abre para a visita. A rolagem conduz o ritmo, e os efeitos sempre levam ao mesmo lugar: o botão verde vivo do WhatsApp.",
+    "keyCharacteristics": [
+      "Campos de cor inteiros que se alternam entre verde, branco e menta",
+      "Figtree 800 nos títulos, com tracking −0,04em e line-height 0,95",
+      "Verde vivo como única cor de ação",
+      "Traço fino de pontas arredondadas nas ilustrações (corpo, postura, linha do tempo)",
+      "Revelações por círculo que levam pelo menos uma altura de tela de rolagem"
+    ],
+    "rules": [
+      {
+        "name": "A Regra da Cor de Ação",
+        "body": "O verde vivo marca o que se pode fazer ou o que alivia. Ele nunca é fundo de seção, e em texto menor que 18px sobre o verde vira verde vivo claro.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Vermelho Único",
+        "body": "O vermelho de dor só aparece no mapa de dor, e sempre passa para o verde. Ele não sinaliza erro nem alerta em nenhum outro lugar.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Título Apertado",
+        "body": "Títulos sempre em 800 com tracking de −0,04em e line-height 0,95. Nunca mais apertado que isso, e nunca em caixa alta.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra da Linha Equilibrada",
+        "body": "Títulos usam text-wrap: balance e parágrafos text-wrap: pretty: nenhuma palavra sozinha na última linha.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra Sem Sombra",
+        "body": "Nenhum elemento tem sombra. Para separar, use cor de fundo ou borda de 1px na cor linha, nunca as duas coisas com sombra junto.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar o verde vivo (#2fd47f) só em ações e destaques, e verde vivo claro (#5be39b) para texto pequeno sobre o verde.",
+      "Do manter os títulos em Figtree 800, tracking −0,04em, line-height 0,95.",
+      "Do separar seções por campos de cor inteiros (verde, branco, menta, fundo claro).",
+      "Do desenhar ilustrações em traço fino de 2,2–2,5px com pontas arredondadas.",
+      "Do dar a todo alvo de toque pelo menos 44px.",
+      "Do oferecer, para cada efeito, uma versão com reduced motion que mantém o conteúdo e a mudança de estado."
+    ],
+    "donts": [
+      "Don't usar sombras, texto em degradê ou caixa alta em rótulos.",
+      "Don't usar o vermelho de dor (#ff6b5b) fora do mapa de dor.",
+      "Don't apagar texto por opacidade abaixo do contraste AA: para mostrar um estado inativo, troque a cor (tinta → texto secundário, verde → cinza).",
+      "Don't usar raio maior que 16px em cards, nem pílula em blocos de conteúdo."
+    ]
+  }
+}
