@@ -34,7 +34,7 @@ export function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="flex min-h-11 items-center rounded-md text-label font-medium opacity-80 transition-opacity duration-300 hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+                  className="relative flex min-h-11 items-center rounded-md text-label font-medium opacity-80 transition-opacity duration-300 after:absolute after:inset-x-0 after:bottom-2.5 after:h-0.5 after:origin-right after:scale-x-0 after:rounded-full after:bg-verde-vivo after:transition-transform after:duration-350 after:ease-out-soft hover:opacity-100 hover:after:origin-left hover:after:scale-x-100 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
                 >
                   {link.label}
                 </a>

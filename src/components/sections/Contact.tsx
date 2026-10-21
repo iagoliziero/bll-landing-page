@@ -46,7 +46,9 @@ export function Contact() {
           <span className="sr-only">{contact.title}</span>
           <SplitTitle text={contact.title} />
         </h2>
-        <p className="mt-6 mb-7 max-w-115 text-intro text-white/85">{contact.text}</p>
+        <p data-reveal-lines data-reveal-start="top 50%" className="mt-6 mb-7 max-w-115 text-intro text-white/85">
+          {contact.text}
+        </p>
         <ContactForm />
       </div>
     </section>

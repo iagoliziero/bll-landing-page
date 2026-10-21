@@ -21,7 +21,9 @@ export function HowItWorks() {
             {howItWorks.title}
           </span>
         </h2>
-        <p className="mt-2 text-body text-secundario">{howItWorks.text}</p>
+        <p data-reveal-lines className="mt-2 text-body text-secundario">
+          {howItWorks.text}
+        </p>
       </div>
 
       <div

@@ -45,7 +45,9 @@ export function PainMap() {
             {painMapSection.title}
           </span>
         </h2>
-        <p className="mt-2 text-body text-white/80">{painMapSection.text}</p>
+        <p data-reveal-lines className="mt-2 text-body text-white/80">
+          {painMapSection.text}
+        </p>
       </div>
 
       <div className="mt-6 grid grid-cols-1 items-center gap-[clamp(24px,5vw,80px)] sm:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)]">

@@ -156,6 +156,8 @@ Uma família de verdes com um único acento vivo e um vermelho reservado à dor.
 
 **A Regra da Linha Equilibrada.** Títulos usam `text-wrap: balance` e parágrafos `text-wrap: pretty`: nenhuma palavra sozinha na última linha.
 
+**A Regra da Máscara.** Texto grande entra subindo de trás de uma máscara, linha por linha: o título do hero, os títulos das seções e, logo depois deles, as introduções. O texto explicativo da postura escurece palavra por palavra com a rolagem, sempre entre duas cores com contraste AA (texto secundário → tinta). Com reduced motion, o texto aparece pronto.
+
 ## Layout
 
 Página de uma coluna, em blocos de seção que ocupam a largura toda. A margem lateral é fluida (clamp(20px, 4vw, 64px)) e se repete em todas as seções. Os blocos de texto têm largura máxima curta: 360px nas introduções, 440–470px nos parágrafos de destaque. O espaçamento vertical das seções é clamp(90px, 14vh, 140px) em cima e clamp(70px, 10vh, 110px) embaixo.
@@ -203,9 +205,15 @@ Cantos suaves e consistentes por função: botões com 12px, caixas de mensagem 
 - **Focus:** o sublinhado passa para verde vivo com 2px de espessura.
 - **Error:** sublinhado na cor erro e mensagem em erro abaixo do formulário.
 
+### Select (Tratamento)
+- **Style:** a caixa segue o campo sublinhado, com o texto do placeholder em menta a 80% e uma seta que gira ao abrir.
+- **Lista:** painel verde escuro com 14px de raio e borda de 1px em branco a 15%. Cada item tem o nome em 15px e uma linha de apoio em 12px a 65% de branco, com fundo branco a 10% no item ativo e check verde vivo no escolhido.
+- **Behavior:** padrão select-only combobox do WAI-ARIA (setas, Home/End, Enter, Espaço, Esc, Tab e busca pela letra).
+
 ### Navigation
 - **Style:** barra fixa e transparente, com a logo e "Fisioterapia" à esquerda, links de 13px/500 a 80% de opacidade no centro e "Agendar" à direita.
 - **Theme:** texto branco sobre seções escuras e tinta sobre as claras, trocando conforme a seção que passa a 28px do topo.
+- **Hover:** um sublinhado verde vivo de 2px se desenha da esquerda para a direita.
 - **Mobile:** abaixo de 640px ficam só a logo e o botão "Agendar".
 
 ### Revelação circular (assinatura)

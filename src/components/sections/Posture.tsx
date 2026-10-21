@@ -73,17 +73,19 @@ export function Posture() {
               {posture.title}
             </span>
           </h2>
-          <p className="mt-3.5 max-w-90 text-lead text-secundario">{posture.text}</p>
+          <p data-reveal-read className="mt-3.5 max-w-90 text-lead text-secundario">
+            {posture.text}
+          </p>
           <dl className="mt-6 flex gap-7">
             <div>
               <dt className="text-caption text-secundario">{posture.before}</dt>
-              <dd className="text-number leading-[1.05] font-extrabold tracking-[-0.04em] text-verde tabular-nums">
+              <dd data-count className="text-number leading-[1.05] font-extrabold tracking-[-0.04em] text-verde tabular-nums">
                 {degrees(before)}
               </dd>
             </div>
             <div>
               <dt className="text-caption text-secundario">{posture.after}</dt>
-              <dd className="text-number leading-[1.05] font-extrabold tracking-[-0.04em] text-verde tabular-nums">
+              <dd data-count className="text-number leading-[1.05] font-extrabold tracking-[-0.04em] text-verde tabular-nums">
                 {degrees(after)}
               </dd>
             </div>

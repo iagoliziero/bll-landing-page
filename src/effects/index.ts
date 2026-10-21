@@ -16,6 +16,7 @@ import { initPainMap } from "./painMap";
 import { initPostureWipe } from "./postureWipe";
 import { initSmoothScroll } from "./smoothScroll";
 import { initSplitChars } from "./splitChars";
+import { initTextReveal } from "./textReveal";
 import { initTimeline } from "./timeline";
 
 type Cleanup = () => void;
@@ -56,6 +57,7 @@ export function initEffects(): Cleanup {
         initPostureWipe(),
         initContactReveal(env),
         initSplitChars(env),
+        initTextReveal(env),
         initElasticHeadings(env),
         initCursor(env),
         initMagnetic(env),

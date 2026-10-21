@@ -26,7 +26,9 @@ export function Treatments() {
                 {treatmentsSection.title}
               </span>
             </h2>
-            <p className="mt-2 max-w-90 text-body text-secundario">{treatmentsSection.text}</p>
+            <p data-reveal-lines className="mt-2 max-w-90 text-body text-secundario">
+              {treatmentsSection.text}
+            </p>
           </div>
           <p
             aria-hidden="true"

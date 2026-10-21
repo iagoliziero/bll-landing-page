@@ -185,6 +185,24 @@
   background: var(--color-verde-vivo);
 }
 
+/* ---------- Textos que entram com a rolagem (efeito textReveal) ---------- */
+
+/* As linhas e as máscaras são spans (HTML válido dentro de p e h2) e precisam
+   ser blocos para o transform e o recorte funcionarem */
+.reveal-title-line,
+.reveal-title-line-mask,
+.reveal-text-line,
+.reveal-text-line-mask {
+  display: block;
+}
+
+/* Folga na máscara de cada linha dos títulos: com line-height 0,95, os
+   descendentes (ç, g, p) seriam cortados */
+.reveal-title-line-mask {
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
 /* ---------- Tratamentos ---------- */
 
 .treatments-viewport {
